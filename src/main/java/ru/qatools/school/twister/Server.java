@@ -1,8 +1,8 @@
-package ru.qatools.school.switter;
+package ru.qatools.school.twister;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.mvc.freemarker.FreemarkerMvcFeature;
-import ru.qatools.school.switter.service.DatabaseProvider;
+import ru.qatools.school.twister.service.DatabaseProvider;
 
 import javax.ws.rs.container.DynamicFeature;
 import javax.ws.rs.container.ResourceInfo;

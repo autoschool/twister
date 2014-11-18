@@ -3,11 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <filter>
-        <filter-name>switter</filter-name>
+        <filter-name>twister</filter-name>
         <filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>ru.qatools.school.switter.Server</param-value>
+            <param-value>ru.qatools.school.twister.Server</param-value>
         </init-param>
         <init-param>
             <param-name>jersey.config.servlet.filter.staticContentRegex</param-name>
@@ -16,7 +16,7 @@
     </filter>
 
     <filter-mapping>
-        <filter-name>switter</filter-name>
+        <filter-name>twister</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>

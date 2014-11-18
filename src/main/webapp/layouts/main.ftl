@@ -17,7 +17,7 @@
                 <a class="navbar-brand-img" href="/">
                     <img alt="Brand" src="/public/app/img/switter-48x48.png">
                 </a>
-                <a class="navbar-brand" href="/">SWITTER</a>
+                <a class="navbar-brand" href="/">TWISTER</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Blog</a></li>
