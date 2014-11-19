@@ -9,8 +9,8 @@ import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.FeatureContext;
 
 /**
- * eroshenkoam
- * 15/11/14
+ * Team 4
+ * 18/11/14
  */
 public class Server extends ResourceConfig {
 
