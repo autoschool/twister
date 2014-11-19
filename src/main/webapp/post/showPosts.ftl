@@ -3,8 +3,12 @@
 <@layout.layout title="Blog: post">
 <div class="row">
     <div class="col-md-12">
-        <div class="page-header">
-            <h2>All Posts</h2>
+        <div class="page-header " >
+
+             <a href="/post/new" class="btn btn-default">New post</a>
+
+
+
         </div>
         <#list model as post>
         <div class="panel panel-default">
