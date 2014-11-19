@@ -1,4 +1,4 @@
-package ru.qatools.school.switter.service;
+package ru.qatools.school.twister.service;
 
 import org.flywaydb.core.Flyway;
 import org.javalite.activejdbc.Base;

@@ -1,4 +1,4 @@
-package ru.qatools.school.switter.models;
+package ru.qatools.school.twister.models;
 
 import org.javalite.activejdbc.Model;
 

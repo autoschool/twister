@@ -1,8 +1,8 @@
-package ru.qatools.school.switter.resources;
+package ru.qatools.school.twister.resources;
 
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
-import ru.qatools.school.switter.models.Post;
+import ru.qatools.school.twister.models.Post;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
