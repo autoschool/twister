@@ -1,4 +1,4 @@
-# Twister
+# ![](https://cloud.githubusercontent.com/assets/7381057/5114304/930b4cbc-7048-11e4-846d-574e26840624.jpg) Twister
 
 ### Run application
 
