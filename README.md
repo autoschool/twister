@@ -7,3 +7,5 @@
   * `cd twister` - go to application directory
   * `mvn jetty:run` - run server
   * `http://localhost:8080` - open in browser
+
+  * test jenkins
