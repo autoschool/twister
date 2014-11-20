@@ -3,13 +3,25 @@
 <@layout.layout title="Blog: post">
 <div class="row">
     <div class="col-md-12">
-        <div class="page-header">
-            <h2>All Posts</h2>
+        <div class="page-header " >
+            <a href="/post/new" class="btn btn-warning">New post</a>
         </div>
+
         <#list model as post>
         <div class="panel panel-default">
             <div class="panel-body">
-                <a href="/post/${post.id}">${post.title}</a> at ${post.createdAt}<br/>
+
+            <div class="row">
+                <div class="col-md-10 col-sm-9">
+                  <H1><a href="/post/${post.id}">${post.title}</a> </H1>
+                  <div class="row">
+                    <div class="col-xs-9">
+                      <p> <a href="/post/${post.id}">${post.body}</a></p>
+                      <a href="/post/${post.id}" class="btn btn-default">Read more</a> <br><br>
+                      ${post.createdAt}
+                     </div>
+                  </div>
+                </div>
             </div>
         </div>
         </#list>
