@@ -4,3 +4,8 @@ color: #ec971f;
 .text-danger {
 color:#d43f3a;
 }
+
+.post-body--short{
+max-height: 100px;
+overflow: hidden;
+}
