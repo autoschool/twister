@@ -21,7 +21,7 @@ public class IndexResource {
 
     @GET
     @Path("/")
-    @Template(name = "/index.ftl")
+    @Template(name = "/post/showPosts.ftl")
     public List<Post> showIndex() {
         return Post.findAll();
     }
