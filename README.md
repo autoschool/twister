@@ -1,6 +1,6 @@
 # ![](https://cloud.githubusercontent.com/assets/7381057/5114304/930b4cbc-7048-11e4-846d-574e26840624.jpg) Twister
 
-### Run application
+### How to run application
 
   * Install Maven from [here](http://maven.apache.org)
   * `git clone git@github.com:autoschool/twister.git` - checkout application
