@@ -8,6 +8,26 @@
         </div>
         <div class="post-body">
             ${model.body}
+            <div class="panel-body">
+                    <ul class="list-group">
+                        <#list model.comments as comment>
+
+                            <li class="list-group-item">${comment.body}</li>
+
+                        </#list>
+                    </ul>
+
+                    <form class="form" role="form" action="/post/${model.id}/addComment" method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="commentBody"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-default pull-right">Add Comment</button>
+                            </div>
+                        </div>
+                    </form>
+            <div>
         </div>
     </div>
 </div>

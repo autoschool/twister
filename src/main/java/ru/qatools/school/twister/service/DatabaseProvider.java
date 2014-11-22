@@ -20,26 +20,26 @@ import static java.nio.file.Files.createTempDirectory;
 @Provider
 public class DatabaseProvider implements ContainerRequestFilter {
     private static final String DBUSER = "sa";
-    private final static Logger logger = LoggerFactory.getLogger(DatabaseProvider.class);
-    private static String dbUrl;
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseProvider.class);
+    private static String DB_URL;
 
     static {
         try {
-            dbUrl = format("jdbc:h2:file:%s/%s,user=%s", getDbPath(), getDbName(), DBUSER);
-            logger.info(format("Starting embedded database with url '%s' ...", dbUrl));
+            DB_URL = format("jdbc:h2:file:%s/%s,user=%s", getDbPath(), getDbName(), DBUSER);
+            LOGGER.info(format("Starting embedded database with url '%s' ...", DB_URL));
             openConnection();
             Flyway flyway = new Flyway();
-            flyway.setDataSource(dbUrl, DBUSER, null);
+            flyway.setDataSource(DB_URL, DBUSER, null);
             flyway.migrate();
         } catch (Exception e) {
-            logger.error("Failed to start embedded database", e);
+            LOGGER.error("Failed to start embedded database", e);
             System.exit(-1);
         }
     }
 
     public static void openConnection() {
         if (!Base.hasConnection()) {
-            Base.open(org.h2.Driver.class.getName(), dbUrl, DBUSER, "");
+            Base.open(org.h2.Driver.class.getName(), DB_URL, DBUSER, "");
         }
     }
 

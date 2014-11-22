@@ -3,6 +3,7 @@ package ru.qatools.school.twister.resources;
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
 import ru.qatools.school.twister.models.Post;
+import ru.qatools.school.twister.models.Comment;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -51,4 +52,18 @@ public class PostResources {
         return post;
     }
 
+    @POST
+    @Path("/{id}/addComment")
+    @Template(name = "/post/showPost.ftl")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Post addComment(@PathParam("id") String fPostId,
+                           @FormParam("commentBody") String fCommentBody) {
+        
+    	Comment comment = new Comment();
+        comment.setPost(Integer.parseInt(fPostId));
+        comment.setBody(fCommentBody);
+        comment.saveIt();
+
+        return Post.findById(fPostId);
+    }
 }
