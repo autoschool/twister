@@ -1,5 +1,5 @@
 <#import "layouts/main.ftl" as layout />
-<@layout.layout title="Switter: error">
+<@layout.layout title="Twister: error">
 <div class="row">
 ${model}
 </div>
