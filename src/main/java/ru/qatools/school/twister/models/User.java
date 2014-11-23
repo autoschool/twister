@@ -23,7 +23,7 @@ public class User extends Model{
   }
 
   public void setPassHash(String hash){
-      setString("hash", hash);
+      setString("pass_hash", hash);
   }
 
     public Timestamp getCreatedAt() {
