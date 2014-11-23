@@ -15,11 +15,10 @@ public class User extends Model{
 
   public void setName(String name){
       setString("name",name);
-
   }
 
   public String getPassHash(){
-      return getString("hash");
+      return getString("pass_hash");
   }
 
   public void setPassHash(String hash){
