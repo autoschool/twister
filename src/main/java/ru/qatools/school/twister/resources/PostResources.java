@@ -5,8 +5,11 @@ import org.glassfish.jersey.server.mvc.Template;
 import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.Comment;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,6 +20,9 @@ import java.util.List;
 @Produces(MediaType.TEXT_HTML)
 @ErrorTemplate(name = "/error.ftl")
 public class PostResources {
+
+    @Context
+    HttpServletResponse response;
 
     @GET
     @Path("/{id}")
@@ -41,29 +47,32 @@ public class PostResources {
 
     @POST
     @Path("/")
-    @Template(name = "/post/showPost.ftl")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Post createPost(@FormParam("title") String title,
-                           @FormParam("body") String body) {
+    public String createPost(@FormParam("title") String title,
+                           @FormParam("body") String body) throws IOException {
         Post post = new Post();
         post.setTitle(title);
         post.setBody(body);
         post.saveIt();
-        return post;
+
+        response.sendRedirect("/post/" + post.getId());
+
+        return "";
     }
 
     @POST
     @Path("/{id}/addComment")
-    @Template(name = "/post/showPost.ftl")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Post addComment(@PathParam("id") String fPostId,
-                           @FormParam("commentBody") String fCommentBody) {
+    public String addComment(@PathParam("id") String fPostId,
+                           @FormParam("commentBody") String fCommentBody) throws IOException {
         
     	Comment comment = new Comment();
         comment.setPost(Integer.parseInt(fPostId));
         comment.setBody(fCommentBody);
         comment.saveIt();
 
-        return Post.findById(fPostId);
+        response.sendRedirect("/post/" + fPostId);
+
+        return "";
     }
 }

@@ -24,7 +24,7 @@
         <div class="clearfix">
 
             <div class="pull-left"><a href="/auth/signin" class="btn btn-success">Sign in</a>
-            <a href="/auth/signon" class="btn btn-success">Sign on</a></div>
+            <a href="/auth/register" class="btn btn-success">Sign on</a></div>
             <div class="pull-right"><a href="/profile" class="btn btn-primary">Profile</a>
             <a href="/auth/signout" class="btn btn-danger">Sign out</a></div>
             </div>
