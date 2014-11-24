@@ -1,6 +1,8 @@
 package ru.qatools.school.twister;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -26,5 +28,10 @@ public class TwisterBlogTest {
     	String title = driver.getTitle();
         assertThat(title, notNullValue());
         assertThat(title, equalTo(BLOG_TITLE));
+    }
+    
+    @After
+    public void close(){
+        driver.quit();
     }
 }
