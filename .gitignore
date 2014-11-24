@@ -7,3 +7,6 @@ target
 
 #MacOS
 .DS_Store
+
+# LOG 
+phantomjsdriver.log
