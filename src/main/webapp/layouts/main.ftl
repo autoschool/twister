@@ -1,4 +1,5 @@
-<#macro layout title="Switter">
+<#-- @ftlvariable name="model" type="ru.qatools.school.twister.models.User" -->
+<#macro layout title="Twister">
 <html>
 <head>
     <script src="/public/jquery/js/jquery.min.js" type="text/javascript"></script>
@@ -12,33 +13,32 @@
 </head>
 <body style="padding-top: 191px">
 <header class="navbar navbar-default navbar-fixed-top">
-
-
-<div id="masthead">
-  <div class="container">
-    <div class="row">
-      <div class ="col-md-1">
-      </div>
-      <div class="col-md-4">
-        <H1><a href="/post/all"><span class="text-primary">T</span><span class="text-warning">W</span><span class="text-success">I</span></span><span class="text-danger">S</span><span class="text-primary">T</span><span class="text-warning">E</span><span class="text-success">R</span></a> </H1>
-        <div class="clearfix">
-
-            <div class="pull-left"><a href="/auth/signin" class="btn btn-success">Sign in</a>
-            <a href="/auth/signon" class="btn btn-success">Sign on</a></div>
-            <div class="pull-right"><a href="/profile" class="btn btn-primary">Profile</a>
-            <a href="/auth/signout" class="btn btn-danger">Sign out</a></div>
+    <div id="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-4">
+                    <h1>
+                        <a href="/post/all">
+                            <span class="text-primary">T</span><span class="text-warning">W</span><span class="text-success">I</span><span class="text-danger">S</span><span class="text-primary">T</span><span class="text-warning">E</span><span class="text-success">R</span>
+                        </a>
+                    </h1>
+                <div class="clearfix">
+                    <#--<#if model >-->
+                        <div class="pull-left">
+                            <a href="/auth/signin" class="btn btn-success">Sign in</a>
+                            <a href="/auth/register" class="btn btn-success">Register</a>
+                        </div>
+                    <#--<#else >-->
+                        <div class="pull-right">
+                            <a href="/profile" class="btn btn-primary">Profile</a>
+                            <a href="/auth/signout" class="btn btn-danger">Sign out</a>
+                        </div>
+                    </div>
+                    <#--</#if>-->
+                </div>
             </div>
-      </div>
-      <div class="col-md-2">
-
-                          </div>
-
-    </div>
-  </div>
+        </div>
 </header>
-
-
-
 
 <div class="content">
     <div class="container">

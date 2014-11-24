@@ -1,5 +1,5 @@
-<#import "/layouts/main.ftl" as layout />
-<@layout.layout title="switter: about">
+<#import "layouts/main.ftl" as layout />
+<@layout.layout title="twister: about">
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">

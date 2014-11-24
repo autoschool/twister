@@ -3,6 +3,7 @@ package ru.qatools.school.twister.models;
 import org.javalite.activejdbc.Model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * eroshenkoam
@@ -34,5 +35,12 @@ public class Post extends Model {
         return getTimestamp("created_at");
     }
 
+    public void addComment(Comment comment){
+        this.add(comment);
+    }
+
+    public List<Comment> getComments(){
+        return this.getAll(Comment.class);
+    }
 
 }
