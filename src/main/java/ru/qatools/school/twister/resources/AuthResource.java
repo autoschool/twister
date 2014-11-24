@@ -6,7 +6,9 @@ import ru.qatools.school.twister.models.Comment;
 import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.User;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -27,6 +29,8 @@ public class AuthResource {
         return "";
     }
 
+    @Context
+    HttpServletRequest request;
     @Context
     HttpServletResponse response;
 
@@ -54,4 +58,33 @@ public class AuthResource {
         return User.findById(id);
     }
 
+
+    @GET
+    @Path("/signin")
+    @Template(name = "/auth/login.ftl")
+    public String showLoginForm() {
+        return "";
+    }
+
+    @POST
+    @Path("/signin")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public String processLogin(@FormParam("name") String name,
+                               @FormParam("pass") String hash) throws IOException {
+
+        User user = User.findFirst("name = ? and pass_hash = ?", name, hash);
+
+        if (user == null) {
+            System.out.println("name or password is wrong");
+
+            return "";
+        }
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userId", user.getId());
+
+        response.sendRedirect("/user/" + user.getId());
+
+        return "";
+    }
 }

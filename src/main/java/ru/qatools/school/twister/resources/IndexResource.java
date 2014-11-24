@@ -4,10 +4,15 @@ import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
 import ru.qatools.school.twister.models.Post;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,6 +24,12 @@ import java.util.List;
 @ErrorTemplate(name = "/error.ftl")
 public class IndexResource {
 
+    @Context
+    HttpServletRequest request;
+
+    @Context
+    HttpServletResponse response;
+
     @GET
     @Path("/")
     @Template(name = "/post/showPosts.ftl")
@@ -27,16 +38,24 @@ public class IndexResource {
     }
 
     @GET
-    @Path("/about")
-    @Template(name = "/about.ftl")
-    public String showAbout() {
-        return null;
+    @Path("/profile")
+    public String profile() throws IOException {
+
+        HttpSession session = request.getSession(true);
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        String redirectUrl;
+        if (userId != null) {
+            redirectUrl = "/user/" + userId;
+        } else {
+            redirectUrl = "/auth/signin";
+        }
+
+
+        response.sendRedirect(redirectUrl);
+
+
+        return "";
     }
 
-    @GET
-    @Path("/credits")
-    @Template(name = "/credits.ftl")
-    public String showCredits() {
-        return null;
-    }
 }
