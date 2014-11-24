@@ -11,11 +11,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.*;
 import org.openqa.selenium.remote.Augmenter;
 import ru.yandex.qatools.allure.annotations.Attachment;
+import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Stories;
 
 /**
  * Created by q on 11/20/14.
  */
+@Features("Главная страница Twister")
 public class TwisterTest {
 
     private WebDriver driver;
@@ -36,6 +39,7 @@ public class TwisterTest {
         }
     };
 
+    @Stories("Доступность главной страницы")
     @Test
     public void openMainPage(){
         openPage("http://localhost:8080");
