@@ -26,6 +26,7 @@ public class CreatePostTest {
 	}
 	
 	@Test
+	@Ignore
 	public void addPostButtonTest() {
 		String buttonText = driver.findElement(By.id("publish")).getText();
 	    assertThat(buttonText, notNullValue());
@@ -33,6 +34,7 @@ public class CreatePostTest {
 	}
 	
 	@Test
+	@Ignore
 	public void textFieldTitleExistsTest() {
 		String tfTitleText = driver.findElement(By.id("title")).getText();
 		String tfTitleTextPlaceholder = driver.findElement(By.id("title")).getAttribute("placeholder");

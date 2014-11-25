@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import org.hamcrest.core.IsNot;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -23,6 +24,7 @@ private WebDriver driver = new PhantomJSDriver();
 	}
 	
 	@Test
+	@Ignore
 	public void accessRegisterPageTest() {
 		String title = driver.getTitle();
 	    assertThat(title, notNullValue());
