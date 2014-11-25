@@ -23,7 +23,7 @@ public class AuthUserProvider implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws IOException {
 
         HttpSession session = request.getSession(true);
-        Integer userId = (Integer) session.getAttribute("userId");
+        Long userId = (Long) session.getAttribute("userId");
 
         User user = null;
         if (userId != null) {
