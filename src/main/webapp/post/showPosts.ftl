@@ -1,9 +1,9 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
-<@layout.layout title="Blog: post">
+<@layout.layout title="Twister">
 <div class="row">
     <div class="col-md-12">
-      
+
 
         <#list model.posts as post>
         <div class="panel panel-default">
