@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="model" type="ru.qatools.school.twister.models.User" -->
+<#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#macro layout title="Twister">
 <html>
 <head>
@@ -18,26 +18,30 @@
             <div class="row">
                 <div class="col-md-offset-1 col-md-4">
                     <h1>
-                        <a href="/post/all">
+                        <a href="/">
                             <span class="text-primary">T</span><span class="text-warning">W</span><span class="text-success">I</span><span class="text-danger">S</span><span class="text-primary">T</span><span class="text-warning">E</span><span class="text-success">R</span>
                         </a>
                     </h1>
                 <div class="clearfix">
-                    <#--<#if model >-->
-                        <div class="pull-left">
-                            <a href="/auth/signin" class="btn btn-success">Sign in</a>
-                            <a href="/auth/register" class="btn btn-success">Register</a>
-                        </div>
-                    <#--<#else >-->
+                    <#if model.authUser?? >
+
                         <div class="pull-right">
                             <a href="/profile" class="btn btn-primary">Profile</a>
                             <a href="/auth/signout" class="btn btn-danger">Sign out</a>
                         </div>
-                    </div>
-                    <#--</#if>-->
+
+                    <#else >
+
+                        <div class="pull-left">
+                            <a href="/auth/signin" class="btn btn-success">Sign in</a>
+                            <a href="/auth/register" class="btn btn-success">Register</a>
+                        </div>
+
+                    </#if>
                 </div>
             </div>
         </div>
+    </div>
 </header>
 
 <div class="content">

@@ -2,7 +2,10 @@ package ru.qatools.school.twister.resources;
 
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
+import ru.qatools.school.twister.context.AuthUser;
 import ru.qatools.school.twister.models.Post;
+import ru.qatools.school.twister.models.User;
+import ru.qatools.school.twister.view.ViewData;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 import java.io.IOException;
 import java.util.List;
 
@@ -30,30 +34,36 @@ public class IndexResource {
     @Context
     HttpServletResponse response;
 
+    @Context
+    SecurityContext securityContext;
+
     @GET
     @Path("/")
     @Template(name = "/post/showPosts.ftl")
-    public List<Post> showIndex() {
-        return Post.findAll();
+    public ViewData showIndex() {
+
+        ViewData view = new ViewData();
+
+        view.authUser = (User) securityContext.getUserPrincipal();
+        view.posts = Post.findAll();
+
+        return view;
     }
 
     @GET
     @Path("/profile")
     public String profile() throws IOException {
 
-        HttpSession session = request.getSession(true);
-        Integer userId = (Integer) session.getAttribute("userId");
+        User authUser = (User) securityContext.getUserPrincipal();
 
         String redirectUrl;
-        if (userId != null) {
-            redirectUrl = "/user/" + userId;
+        if (authUser != null) {
+            redirectUrl = "/user/" + authUser.getId();
         } else {
             redirectUrl = "/auth/signin";
         }
 
-
         response.sendRedirect(redirectUrl);
-
 
         return "";
     }

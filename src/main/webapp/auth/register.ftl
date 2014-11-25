@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="model" type="ru.qatools.school.twister.models.User" -->
+<#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
 <@layout.layout title="Registration">
 

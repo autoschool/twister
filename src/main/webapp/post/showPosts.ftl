@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="model" type="ru.qatools.school.twister.models.Post[]" -->
+<#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
 <@layout.layout title="Blog: post">
 <div class="row">
@@ -7,7 +7,7 @@
             <a href="/post/new" class="btn btn-warning">New post</a>
         </div>
 
-        <#list model as post>
+        <#list model.posts as post>
         <div class="panel panel-default">
             <div class="panel-body">
 
