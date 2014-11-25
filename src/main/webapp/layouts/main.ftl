@@ -24,11 +24,14 @@
                     </h1>
                 <div class="clearfix">
                     <#if model.authUser?? >
-
+                         <div class="pull-left">
+                            <a href="/post/new" class="btn btn-warning">New post</a>
+                         </div>
                         <div class="pull-right">
                             <a href="/profile" class="btn btn-primary">Profile</a>
                             <a href="/auth/signout" class="btn btn-danger">Sign out</a>
                         </div>
+
 
                     <#else >
 
