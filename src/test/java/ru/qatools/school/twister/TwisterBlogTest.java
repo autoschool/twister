@@ -24,6 +24,7 @@ public class TwisterBlogTest {
     }
 
     @Test
+    @Ignore
     public void blogTitleTest() {
     	String title = driver.getTitle();
         assertThat(title, notNullValue());
