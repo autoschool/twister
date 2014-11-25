@@ -1,11 +1,11 @@
-<#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
+<#-- @ftlvariable name="model" type="ru.qatools.school.twister.models.User" -->
 <#import "../layouts/main.ftl" as layout />
-<@layout.layout title="Registration">
+<@layout.layout title="Login">
 
 <div class="row">
 
     <div class="col-md-offset-4 col-md-4">
-        <form class="form" role="form" action="/auth/register" method="post">
+        <form class="form" role="form" action="/auth/signin" method="post">
             <div class="page-header">
                 <div class="form-group">
                     <input type="text" class="form-control" id="login" name="name"
@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-danger pull-right" id="register">Sign on</button>
+                    <button type="submit" class="btn btn-danger pull-right">Sign in</button>
                 </div>
             </div>
         </form>

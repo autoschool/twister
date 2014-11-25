@@ -2,6 +2,7 @@ package ru.qatools.school.twister;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.mvc.freemarker.FreemarkerMvcFeature;
+import ru.qatools.school.twister.service.AuthUserProvider;
 import ru.qatools.school.twister.service.DatabaseProvider;
 
 import javax.ws.rs.container.DynamicFeature;
@@ -20,7 +21,9 @@ public class Server extends ResourceConfig {
         register(new DynamicFeature() {
             @Override
             public void configure(ResourceInfo resourceInfo, FeatureContext context) {
+
                 context.register(DatabaseProvider.class);
+                context.register(AuthUserProvider.class);
             }
         });
 
