@@ -97,4 +97,17 @@ public class AuthResource {
 
         return "";
     }
+
+    @GET
+    @Path("/signout")
+    public String processLogout() throws IOException {
+
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userId", null);
+
+        response.sendRedirect("/");
+
+        return "";
+    }
 }
