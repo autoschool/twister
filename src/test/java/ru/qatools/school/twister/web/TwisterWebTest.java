@@ -19,7 +19,7 @@ import ru.yandex.qatools.allure.annotations.Stories;
  * Created by q on 11/20/14.
  */
 @Features("Главная страница Twister")
-public class TwisterTest {
+public class TwisterWebTest {
 
     private WebDriver driver;
 

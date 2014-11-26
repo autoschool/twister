@@ -1,4 +1,4 @@
-package ru.qatools.school.twister;
+package ru.qatools.school.twister.web;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -6,13 +6,12 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
-public class RegisterPageTest {
+public class RegisterPageWebTest {
 	
 	private WebDriver driver = new PhantomJSDriver();
 	
@@ -27,7 +26,6 @@ public class RegisterPageTest {
 	}
 	
 	@Test
-	@Ignore
 	public void addUserButtonTest() {
 		String buttonText = driver.findElement(By.id("register")).getText();
 	    assertThat(buttonText, notNullValue());
@@ -35,7 +33,6 @@ public class RegisterPageTest {
 	}
 	
 	@Test
-	@Ignore
 	public void textFieldUserTest() {
 		String tfUserText = driver.findElement(By.id("login")).getText();
 		String tfUserTextPlaceholder = driver.findElement(By.id("login")).getAttribute("placeholder");
@@ -46,7 +43,6 @@ public class RegisterPageTest {
 	}
 	
 	@Test
-	@Ignore
 	public void textFieldPasswordTest() {
 		String tfPassText = driver.findElement(By.id("pass")).getText();
 		String tfPassTextPlaceholder = driver.findElement(By.id("pass")).getAttribute("placeholder");
