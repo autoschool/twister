@@ -36,15 +36,16 @@
             <version>${jersey.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.github.detro</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>1.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.detro</groupId>
-            <artifactId>phantomjsdriver</artifactId>
-            <version>1.2.0</version>
         </dependency>
 
         <!-- DB -->
@@ -71,11 +72,6 @@
             <version>${sl4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${sl4j.version}</version>
-        </dependency>
-        <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-junit-adaptor</artifactId>
             <version>${allure.version}</version>
@@ -89,34 +85,34 @@
     </dependencies>
 
     <build>
-    <pluginManagement>
-   <plugins>
-      <plugin>
-         <groupId>org.eclipse.m2e</groupId>
-         <artifactId>lifecycle-mapping</artifactId>
-         <version>1.0.0</version>
-         <configuration>
-            <lifecycleMappingMetadata>
-               <pluginExecutions>
-                  <pluginExecution>
-                     <pluginExecutionFilter>
-                        <groupId>org.javalite</groupId>
-                        <artifactId>activejdbc-instrumentation</artifactId>
-                        <versionRange>[1.4.9,)</versionRange>
-                        <goals>
-                            <goal>instrument</goal>
-                        </goals>
-                     </pluginExecutionFilter>
-                     <action>
-                        <execute />
-                     </action>
-                  </pluginExecution>
-               </pluginExecutions>
-            </lifecycleMappingMetadata>
-         </configuration>
-      </plugin>
-   </plugins>
-</pluginManagement>
+		<pluginManagement>
+		   <plugins>
+		      <plugin>
+		         <groupId>org.eclipse.m2e</groupId>
+		         <artifactId>lifecycle-mapping</artifactId>
+		         <version>1.0.0</version>
+		         <configuration>
+		            <lifecycleMappingMetadata>
+		               <pluginExecutions>
+		                  <pluginExecution>
+		                     <pluginExecutionFilter>
+		                        <groupId>org.javalite</groupId>
+		                        <artifactId>activejdbc-instrumentation</artifactId>
+		                        <versionRange>[1.4.9,)</versionRange>
+		                        <goals>
+		                            <goal>instrument</goal>
+		                        </goals>
+		                     </pluginExecutionFilter>
+		                     <action>
+		                        <execute />
+		                     </action>
+		                  </pluginExecution>
+		               </pluginExecutions>
+		            </lifecycleMappingMetadata>
+		         </configuration>
+		      </plugin>
+		   </plugins>
+		</pluginManagement>
 
         <plugins>
             <plugin>
@@ -144,42 +140,89 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.1.3.v20140225</version>
+                <version>9.2.2.v20140723</version>
                 <configuration>
-                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
                     <webApp>
                         <contextPath>/</contextPath>
                     </webApp>
                     <stopPort>9847</stopPort>
-                    <stopKey>tms-local</stopKey>
-                    <jvmArgs>
-                        -Xmx1024m
-                        -XX:MaxPermSize=512m
-                        -Ddb.path=${project.build.directory}/db
-                    </jvmArgs>
-                    <goal>run-forked</goal>
+                    <stopKey>STOP</stopKey>
+                    <stopWait>5</stopWait>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.14</version>
-                    <configuration>
-                        <testFailureIgnore>false</testFailureIgnore>
-                        <argLine>
-                            -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                        </argLine>
-                        <properties>
-                            <property>
-                                <name>listener</name>
-                                <value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
-                            </property>
-                        </properties>
-                    </configuration>
-                </plugin>
-
-        </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.14</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*WebTest.java</exclude>
+                    </excludes>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <argLine>
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                    </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>       
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.17</version>
+            <configuration>
+                <includes>
+                    <include>**/*WebTest.java</include>
+                </includes>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.maven.surefire</groupId>
+                    <artifactId>surefire-junit47</artifactId>
+                    <version>2.18</version>
+                </dependency>
+            </dependencies>
+            <executions>
+                <execution>
+                    <id>integration-test</id>
+                    <goals>
+                        <goal>integration-test</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>verify</id>
+                    <goals>
+                        <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
     </build>
     <reporting>
         <excludeDefaults>true</excludeDefaults>

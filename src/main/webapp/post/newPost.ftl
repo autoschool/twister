@@ -15,7 +15,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-danger pull-right">Publish</button>
+                    <button type="submit" class="btn btn-danger pull-right" id="publish">Publish</button>
                 </div>
             </div>
         </form>
