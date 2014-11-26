@@ -1,4 +1,4 @@
-package ru.qatools.school.twister;
+package ru.qatools.school.twister.web;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -12,7 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
-public class CreatePostTest {
+public class CreatePostWebTest {
 	
 	private WebDriver driver = new PhantomJSDriver();
 		
@@ -26,7 +26,6 @@ public class CreatePostTest {
 	}
 	
 	@Test
-	@Ignore
 	public void addPostButtonTest() {
 		String buttonText = driver.findElement(By.id("publish")).getText();
 	    assertThat(buttonText, notNullValue());
@@ -34,7 +33,6 @@ public class CreatePostTest {
 	}
 	
 	@Test
-	@Ignore
 	public void textFieldTitleExistsTest() {
 		String tfTitleText = driver.findElement(By.id("title")).getText();
 		String tfTitleTextPlaceholder = driver.findElement(By.id("title")).getAttribute("placeholder");

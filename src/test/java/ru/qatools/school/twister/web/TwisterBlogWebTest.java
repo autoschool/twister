@@ -1,4 +1,4 @@
-package ru.qatools.school.twister;
+package ru.qatools.school.twister.web;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-public class TwisterBlogTest {
+public class TwisterBlogWebTest {
 
     private WebDriver driver = new PhantomJSDriver();
 
