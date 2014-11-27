@@ -2,19 +2,17 @@ package ru.qatools.school.twister.resources;
 
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
-import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.Comment;
+import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.User;
 import ru.qatools.school.twister.view.ViewData;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.View;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * eroshenkoam
@@ -63,10 +61,10 @@ public class PostResources {
     }
 
     @POST
-    @Path("/")
+    @Path("/new")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String createPost(@FormParam("title") String title,
-                           @FormParam("body") String body) throws IOException {
+                             @FormParam("body") String body) throws IOException {
         Post post = new Post();
         post.setTitle(title);
         post.setBody(body);
@@ -81,9 +79,9 @@ public class PostResources {
     @Path("/{id}/addComment")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String addComment(@PathParam("id") String fPostId,
-                           @FormParam("commentBody") String fCommentBody) throws IOException {
-        
-    	Comment comment = new Comment();
+                             @FormParam("commentBody") String fCommentBody) throws IOException {
+
+        Comment comment = new Comment();
         comment.setPost(Integer.parseInt(fPostId));
         comment.setBody(fCommentBody);
         comment.saveIt();
