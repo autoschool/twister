@@ -2,8 +2,6 @@ package ru.qatools.school.twister.resources;
 
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
-import ru.qatools.school.twister.models.Comment;
-import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.User;
 import ru.qatools.school.twister.view.ViewData;
 
@@ -24,9 +22,6 @@ import java.io.IOException;
 @ErrorTemplate(name = "/error.ftl")
 public class AuthResource {
 
-    @Context
-    SecurityContext securityContext;
-
     @GET
     @Path("/register")
     @Template(name = "/auth/register.ftl")
@@ -38,11 +33,6 @@ public class AuthResource {
 
         return view;
     }
-
-    @Context
-    HttpServletRequest request;
-    @Context
-    HttpServletResponse response;
 
     @POST
     @Path("/register")
@@ -86,12 +76,13 @@ public class AuthResource {
 
         if (user == null) {
             System.out.println("name or password is wrong");
+            response.sendRedirect( "/auth/error" );
 
             return "";
         }
 
         HttpSession session = request.getSession(true);
-        session.setAttribute("userId", user.getId());
+        session.setAttribute( USER_ID_ATTRIBUTE , user.getId() );
 
         response.sendRedirect("/user/" + user.getId());
 
@@ -101,13 +92,30 @@ public class AuthResource {
     @GET
     @Path("/signout")
     public String processLogout() throws IOException {
-
-
         HttpSession session = request.getSession(true);
-        session.setAttribute("userId", null);
+        session.removeAttribute( USER_ID_ATTRIBUTE );
 
         response.sendRedirect("/");
 
         return "";
     }
+
+    @GET
+    @Path("/error")
+    @Template(name = "/auth/error.ftl")
+    public ViewData showLoginError() {
+        return new ViewData();
+    }
+
+    final static String USER_ID_ATTRIBUTE = "userId";
+
+    @Context
+    SecurityContext securityContext;
+
+    @Context
+    HttpServletRequest request;
+
+    @Context
+    HttpServletResponse response;
+
 }
