@@ -11,46 +11,61 @@
 
     <title>${title}</title>
 </head>
-<body style="padding-top: 191px">
+<body>
 <header class="navbar navbar-default navbar-fixed-top">
-    <div id="masthead">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-1 col-md-4">
-                    <h1>
-                        <a href="/">
-                            <span class="text-primary">T</span><span class="text-warning">W</span><span class="text-success">I</span><span class="text-danger">S</span><span class="text-primary">T</span><span class="text-warning">E</span><span class="text-success">R</span>
-                        </a>
-                    </h1>
-                <div class="clearfix">
-                    <#if model.authUser?? >
-                         <div class="pull-left">
-                            <a href="/post/new" class="btn btn-warning">New post</a>
-                         </div>
-                        <div class="pull-right">
-                            <a href="/profile" class="btn btn-primary">Profile</a>
-                            <a href="/auth/signout" class="btn btn-danger">Sign out</a>
-                        </div>
 
-
-                    <#else >
-
-                        <div class="pull-left">
-                            <a href="/auth/signin" class="btn btn-success">Sign in</a>
-                            <a href="/auth/register" class="btn btn-success">Register</a>
-                        </div>
-
-                    </#if>
-                </div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                    <a href="/" class="twister-title">
+                        <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
+                    </a>
             </div>
-        </div>
-    </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+                <ul class="nav navbar-nav">
+                    <#if model.authUser?? >
+                        <li>
+                            <a href="/post/new" >New post</a>
+                        </li>
+                    </#if>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <#if model.authUser?? >
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            ${model.authUser.name}
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/profile" >Profile</a></li>
+                                <li><a href="/auth/signout" >Sign out</a></li>
+                            </ul>
+                        </li>
+                    <#else >
+                        <li>
+                            <a href="/auth/register">Register</a>
+                        </li>
+                        <li>
+                            <a href="/auth/signin" >Sign in</a>
+                        </li>
+                    </#if>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 </header>
 
-<div class="content">
-    <div class="container">
-        <#nested />
-    </div>
+<div class="container">
+    <#nested />
 </div>
 </body>
 </#macro>

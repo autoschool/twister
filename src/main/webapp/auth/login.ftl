@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="model" type="ru.qatools.school.twister.models.User" -->
+<#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
 <@layout.layout title="Login">
 
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-offset-10 col-md-2">
                     <button type="submit" class="btn btn-danger pull-right">Sign in</button>
                 </div>
             </div>
