@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -42,16 +41,9 @@ public class CreatePostWebTest {
 	    assertThat(tfTitleTextPlaceholder, equalTo(POST_TITLE_PLACEHOLDER));
 	}
 	
-	@Test
-	@Ignore
-	public void textFieldBodyExistsTest() {
-		String tfBodyText = driver.findElement(By.id("body")).getText();
-	    assertThat(tfBodyText, notNullValue());
-	    assertThat(tfBodyText, equalTo(""));
-	}
-	
 	@After
 	public void close(){
+		driver.close();
 	    driver.quit();
 	}
 }

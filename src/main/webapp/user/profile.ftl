@@ -6,7 +6,7 @@
         <div class="col-xs-3">
             Name
         </div>
-        <div class="col-xs-9">
+        <div class="col-xs-9" id="username">
             ${model.profile.name}
         </div>
     </div>

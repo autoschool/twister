@@ -2,12 +2,11 @@ package ru.qatools.school.twister.web;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -24,15 +23,15 @@ public class TwisterBlogWebTest {
     }
 
     @Test
-    @Ignore
     public void blogTitleTest() {
     	String title = driver.getTitle();
         assertThat(title, notNullValue());
-        assertThat(title, equalTo(BLOG_TITLE));
+        assertThat(title, startsWith(BLOG_TITLE));
     }
     
     @After
     public void close(){
+    	driver.close();
         driver.quit();
     }
 }

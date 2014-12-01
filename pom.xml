@@ -130,7 +130,7 @@
                 <version>1.4.9</version>
                 <executions>
                     <execution>
-                        <phase>process-classes</phase>
+                        <phase>post-compile</phase>
                         <goals>
                             <goal>instrument</goal>
                         </goals>

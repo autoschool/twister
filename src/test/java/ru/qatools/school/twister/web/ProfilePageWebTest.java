@@ -31,6 +31,7 @@ private WebDriver driver = new PhantomJSDriver();
 
 	@After
 	public void close(){
+		driver.close();
 	    driver.quit();
 	}
 }
