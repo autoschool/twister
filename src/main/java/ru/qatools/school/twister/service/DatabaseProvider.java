@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.ext.Provider;
+
 import java.io.IOException;
 
 import static java.lang.String.format;
@@ -19,7 +20,8 @@ import static java.nio.file.Files.createTempDirectory;
  */
 @Provider
 public class DatabaseProvider implements ContainerRequestFilter {
-    private static final String DBUSER = "sa";
+    public static final String DB_NAME = "default";
+	private static final String DBUSER = "sa";
     private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseProvider.class);
     private static String DB_URL;
 
@@ -43,11 +45,11 @@ public class DatabaseProvider implements ContainerRequestFilter {
         }
     }
 
-    private static String getDbName() {
-        return getProperty("db.name", "default");
+    public static String getDbName() {
+        return getProperty("db.name", DB_NAME);
     }
 
-    private static String getDbPath() throws IOException {
+    public static String getDbPath() throws IOException {
         return getProperty("db.path", createTempDirectory("blog").toAbsolutePath().toString());
     }
 
