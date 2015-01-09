@@ -5,9 +5,11 @@
 <div class="row">
     <div class="col-xs-3">
         Name
+
     </div>
     <div class="col-xs-9" id="username">
-    ${model.profile.name}
+    ${model.profile.name}<br>
+    ${model.profile.picture}<br>
     </div>
 </div>
 <div class="row">
@@ -20,11 +22,11 @@
 </div>
 
 <div class="row" style="margin-top: 20px">
-    <form>
+    <form action="/user/save" method="post">
 
         <div class="form-group">
             <input type="hidden" role="uploadcare-uploader"
-                   data-images-only="true"/>
+                   data-images-only="true" name="picture"/>
         </div>
 
         <button type="submit" class="btn btn-default">Save</button>
