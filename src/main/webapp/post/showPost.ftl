@@ -2,34 +2,42 @@
 <#import "../layouts/main.ftl" as layout />
 <@layout.layout title="Twister">
 <div class="row">
-    <div class="col-md-12">
-        <div class="page-header">
-            <h2>${model.post.title}</h2>
+<div class="col-md-12">
+    <div class="page-header">
+        <h2>${model.post.title}</h2>
+    </div>
+    <div class="post-body">
+    ${model.post.body}
+
+        <div>
+            <span class="glyphicon glyphicon-user"></span>
+            <span>${model.post.user.name}</span>
         </div>
-        <div class="post-body">
-            ${model.post.body}
-            ${model.post.userId}
-            <div class="panel-body">
-                    <ul class="list-group">
-                        <#list model.post.comments as comment>
+        <div>
+            <span class="glyphicon glyphicon-time"></span>
+            <span>${model.post.createdAt}</span>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <#list model.post.comments as comment>
 
-                            <li class="list-group-item">${comment.body}</li>
+                    <li class="list-group-item">${comment.body}</li>
 
-                        </#list>
-                    </ul>
+                </#list>
+            </ul>
 
-                    <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3" name="commentBody"></textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-default pull-right">Add Comment</button>
-                            </div>
-                        </div>
-                    </form>
+            <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" name="commentBody"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-default pull-right">Add Comment</button>
+                    </div>
+                </div>
+            </form>
             <div>
+            </div>
         </div>
     </div>
-</div>
 </@layout.layout>
