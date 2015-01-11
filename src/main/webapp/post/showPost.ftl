@@ -10,12 +10,20 @@
     ${model.post.body}
 
         <div>
+            <a href="/user/${model.post.userId}">
             <span class="glyphicon glyphicon-user"></span>
             <span>${model.post.user.name}</span>
+                </a>
         </div>
         <div>
             <span class="glyphicon glyphicon-time"></span>
             <span>${model.post.createdAt}</span>
+        </div>
+        <div>
+            <a href="/post/${model.post.id}/edit">
+                <span class="glyphicon glyphicon-pencil"></span>
+                edit
+            </a>
         </div>
         <div class="panel-body">
             <ul class="list-group">
