@@ -84,10 +84,13 @@ public class PostResources {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String addComment(@PathParam("id") String fPostId,
                              @FormParam("commentBody") String fCommentBody) throws IOException {
+        
+        User authUser = (User) securityContext.getUserPrincipal();
 
         Comment comment = new Comment();
         comment.setPost(Integer.parseInt(fPostId));
         comment.setBody(fCommentBody);
+        comment.setUserId((int) authUser.getId());
         comment.saveIt();
 
         response.sendRedirect("/post/" + fPostId);
@@ -115,7 +118,7 @@ public class PostResources {
         Post post = Post.findById(id);
 
         assert post != null;
-        
+
         post.setTitle(title);
         post.setBody(body);
         post.saveIt();
