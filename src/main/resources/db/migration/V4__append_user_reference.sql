@@ -1,4 +1,4 @@
-/* ALTER TABLE posts
+ ALTER TABLE posts
 ADD user_id INT NOT NULL;
 
 ALTER TABLE comments
@@ -10,4 +10,3 @@ ADD FOREIGN KEY (user_id) REFERENCES users(id);
 ALTER TABLE comments
 ADD FOREIGN KEY (user_id) REFERENCES users(id);
 
-*/
