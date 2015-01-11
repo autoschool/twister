@@ -43,4 +43,12 @@ public class Post extends Model {
         return this.getAll(Comment.class);
     }
 
+    public int getUserId() {
+        return getInteger("user_id");
+    }
+
+    public void setUserId(int userId) {
+        setInteger("user_id", userId);
+    }
+
 }

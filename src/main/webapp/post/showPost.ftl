@@ -8,6 +8,7 @@
         </div>
         <div class="post-body">
             ${model.post.body}
+            ${model.post.userId}
             <div class="panel-body">
                     <ul class="list-group">
                         <#list model.post.comments as comment>

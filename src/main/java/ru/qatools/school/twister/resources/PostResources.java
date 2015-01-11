@@ -65,9 +65,13 @@ public class PostResources {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String createPost(@FormParam("title") String title,
                              @FormParam("body") String body) throws IOException {
+
+        User authUser = (User) securityContext.getUserPrincipal();
+
         Post post = new Post();
         post.setTitle(title);
         post.setBody(body);
+        post.setUserId((int) authUser.getId());
         post.saveIt();
 
         response.sendRedirect("/post/" + post.getId());
