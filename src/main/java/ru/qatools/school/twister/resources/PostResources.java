@@ -94,4 +94,34 @@ public class PostResources {
 
         return "";
     }
+
+    @GET
+    @Path("/{id}/edit")
+    @Template(name = "/post/editPost.ftl")
+    public ViewData editPost(@PathParam("id") int id) {
+        ViewData view = new ViewData();
+        view.authUser = (User) securityContext.getUserPrincipal();
+        view.post = Post.findById(id);
+        return view;
+    }
+
+    @POST
+    @Path("/edit")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public String updatePost(@FormParam("title") String title,
+                             @FormParam("body") String body,
+                             @FormParam("id") int id) throws IOException {
+
+        Post post = Post.findById(id);
+
+        assert post != null;
+        
+        post.setTitle(title);
+        post.setBody(body);
+        post.saveIt();
+
+        response.sendRedirect("/post/" + post.getId());
+
+        return "";
+    }
 }
