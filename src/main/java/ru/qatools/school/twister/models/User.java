@@ -29,4 +29,12 @@ public class User extends Model implements Principal {
     public Timestamp getCreatedAt() {
         return getTimestamp("created_at");
     }
+
+    public String getPicture() {
+        return getString("picture");
+    }
+
+    public void setPicture(String picture) {
+        setString("picture", picture);
+    }
 }

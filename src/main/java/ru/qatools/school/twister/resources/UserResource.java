@@ -5,10 +5,12 @@ import org.glassfish.jersey.server.mvc.Template;
 import ru.qatools.school.twister.models.User;
 import ru.qatools.school.twister.view.ViewData;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
+import java.io.IOException;
 
 @Path("user")
 @Produces(MediaType.TEXT_HTML)
@@ -17,6 +19,9 @@ public class UserResource {
 
     @Context
     SecurityContext securityContext;
+
+    @Context
+    HttpServletResponse response;
 
     @GET
     @Path("/{id}")
@@ -28,6 +33,19 @@ public class UserResource {
         view.profile = User.findById(id);
         return view;
 
+    }
+
+    @POST
+    @Path("/save")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public String saveUser(@FormParam("picture") String picture) throws IOException {
+        User authUser = (User) securityContext.getUserPrincipal();
+        authUser.setPicture(picture);
+        authUser.saveIt();
+
+        response.sendRedirect("/user/" + authUser.getId());
+
+        return "";
     }
 
 }
