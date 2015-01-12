@@ -100,7 +100,7 @@
 		                        <artifactId>activejdbc-instrumentation</artifactId>
 		                        <versionRange>[1.4.9,)</versionRange>
 		                        <goals>
-		                             <goal>instrument</goal>
+		                            <goal>instrument</goal>
 		                        </goals>
 		                     </pluginExecutionFilter>
 		                     <action>
@@ -130,6 +130,14 @@
                 <version>1.4.9</version>
                 <executions>
                     <execution>
+                        <id>1</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>instrument</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>2</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>instrument</goal>
@@ -200,7 +208,7 @@
                         </property>
                     </properties>
                 </configuration>
-            </plugin>       
+            </plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
