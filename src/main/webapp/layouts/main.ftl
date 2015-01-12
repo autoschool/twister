@@ -17,15 +17,16 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-9">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    <a href="/" class="twister-title">
-                        <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
-                    </a>
+                <a href="/" class="twister-title">
+                    <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,21 +34,22 @@
                 <ul class="nav navbar-nav">
                     <#if model.authUser?? >
                         <li>
-                            <a href="/post/new" >New post</a>
+                            <a href="/post/new">New post</a>
                         </li>
                     </#if>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <#if model.authUser?? >
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
                             ${model.authUser.name}
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/profile" >Profile</a></li>
-                                <li><a href="/auth/signout" >Sign out</a></li>
+                                <li><a href="/profile">Profile</a></li>
+                                <li><a href="/auth/signout">Sign out</a></li>
                             </ul>
                         </li>
                     <#else >
@@ -55,12 +57,14 @@
                             <a href="/auth/register">Register</a>
                         </li>
                         <li>
-                            <a href="/auth/signin" >Sign in</a>
+                            <a href="/auth/signin">Sign in</a>
                         </li>
                     </#if>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
     </nav>
 </header>
 
