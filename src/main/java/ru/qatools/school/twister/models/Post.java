@@ -35,12 +35,24 @@ public class Post extends Model {
         return getTimestamp("created_at");
     }
 
-    public void addComment(Comment comment){
+    public void addComment(Comment comment) {
         this.add(comment);
     }
 
-    public List<Comment> getComments(){
+    public List<Comment> getComments() {
         return this.getAll(Comment.class);
+    }
+
+    public User getUser() {
+        return this.parent(User.class);
+    }
+
+    public int getUserId() {
+        return getInteger("user_id");
+    }
+
+    public void setUserId(int userId) {
+        setInteger("user_id", userId);
     }
 
 }
