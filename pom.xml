@@ -131,13 +131,6 @@
                 <executions>
                     <execution>
                         <id>1</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>instrument</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>2</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>instrument</goal>
