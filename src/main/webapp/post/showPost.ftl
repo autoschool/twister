@@ -34,6 +34,7 @@
                 </#list>
             </ul>
 
+        <#if model.authUser?? >
             <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
                 <div class="form-group">
                     <textarea class="form-control" rows="3" name="commentBody"></textarea>
@@ -44,6 +45,11 @@
                     </div>
                 </div>
             </form>
+        <#else >
+            <div class="alert alert-warning" role="alert">
+                Only authorised user can comment. Please, <a class="alert-link" href="/auth/signin" >sign in</a>.
+            </div>
+        </#if>
             <div>
             </div>
         </div>
