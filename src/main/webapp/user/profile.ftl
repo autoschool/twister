@@ -18,17 +18,19 @@
 </div>
 
 <div class="row" style="margin-top: 20px">
-    <form action="/user/save" method="post">
+    <#if model.authUser?? && model.profile == model.authUser>
+        <form action="/user/save" method="post">
 
-        <div class="form-group">
-            <input type="hidden" role="uploadcare-uploader"
-                   data-images-only="true" name="picture"/>
+            <div class="form-group">
+                <input type="hidden" role="uploadcare-uploader"
+                       data-images-only="true" name="picture"/>
 
 
-            <button type="submit" class="btn btn-success btn-sm"
-                    style="height: 28px; box-sizing: border-box; margin-bottom: 2px;">Save</button>
-        </div>
-    </form>
+                <button type="submit" class="btn btn-success btn-sm"
+                        style="height: 28px; box-sizing: border-box; margin-bottom: 2px;">Save</button>
+            </div>
+        </form>
+    </#if>
 </div>
 
 

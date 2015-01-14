@@ -19,11 +19,24 @@
             <span class="glyphicon glyphicon-time"></span>
             <span>${model.post.createdAt}</span>
         </div>
+        <div class="btn-group">
+            <#if model.authUser?? && model.post.user == model.authUser>
+                <form class="form" role="form" action="/post/${model.post.id}/edit" method="get" style="display: inline-block;">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        edit
+                    </button>
+                </form>
+                <form class="form" role="form" action="/post/${model.post.id}/remove" method="post" style="display: inline-block;">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        remove
+                    </button>
+                </form>
+            </#if>
+        </div>
         <div>
-            <a href="/post/${model.post.id}/edit">
-                <span class="glyphicon glyphicon-pencil"></span>
-                edit
-            </a>
+
         </div>
         <div class="panel-body">
             <ul class="list-group">
@@ -34,6 +47,7 @@
                 </#list>
             </ul>
 
+        <#if model.authUser?? >
             <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
                 <div class="form-group">
                     <textarea class="form-control" rows="3" name="commentBody"></textarea>
@@ -44,6 +58,11 @@
                     </div>
                 </div>
             </form>
+        <#else >
+            <div class="alert alert-warning" role="alert">
+                Only authorised user can comment. Please, <a class="alert-link" href="/auth/signin" >sign in</a>.
+            </div>
+        </#if>
             <div>
             </div>
         </div>
