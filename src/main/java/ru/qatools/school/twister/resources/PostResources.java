@@ -127,4 +127,20 @@ public class PostResources {
 
         return "";
     }
+
+    @POST
+    @Path("/{id}/remove")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public String removePost( @PathParam("id") String id ) throws IOException {
+        Post post = Post.findById(id);
+        for ( Comment comment : post.getComments() ) {
+            comment.delete();
+        }
+        post.delete();
+
+        response.sendRedirect( "/post/all" );
+
+        return "";
+    }
+
 }

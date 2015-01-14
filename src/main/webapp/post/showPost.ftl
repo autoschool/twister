@@ -19,12 +19,22 @@
             <span class="glyphicon glyphicon-time"></span>
             <span>${model.post.createdAt}</span>
         </div>
-        <#if model.authUser?? && model.post.user == model.authUser>
-            <a href="/post/${model.post.id}/edit">
-                <span class="glyphicon glyphicon-pencil"></span>
-                edit
-            </a>
-        </#if>
+        <div class="btn-group">
+            <#if model.authUser?? && model.post.user == model.authUser>
+                <form class="form" role="form" action="/post/${model.post.id}/edit" method="get" style="display: inline-block;">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        edit
+                    </button>
+                </form>
+                <form class="form" role="form" action="/post/${model.post.id}/remove" method="post" style="display: inline-block;">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        remove
+                    </button>
+                </form>
+            </#if>
+        </div>
         <div>
 
         </div>
