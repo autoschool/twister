@@ -19,11 +19,14 @@
             <span class="glyphicon glyphicon-time"></span>
             <span>${model.post.createdAt}</span>
         </div>
-        <div>
+        <#if model.authUser?? && model.post.user == model.authUser>
             <a href="/post/${model.post.id}/edit">
                 <span class="glyphicon glyphicon-pencil"></span>
                 edit
             </a>
+        </#if>
+        <div>
+
         </div>
         <div class="panel-body">
             <ul class="list-group">
