@@ -131,7 +131,7 @@
                 <executions>
                     <execution>
                         <id>1</id>
-                        <phase>prepare-package</phase>
+                        <phase>process-classes</phase>
                         <goals>
                             <goal>instrument</goal>
                         </goals>

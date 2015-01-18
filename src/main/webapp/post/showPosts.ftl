@@ -11,20 +11,51 @@
 
                     <div class="row">
                         <div class="col-md-10 col-sm-9">
-                            <H1><a href="/post/${post.id}">${post.title}</a></H1>
+                            <h1>
+                                <a href="/post/${post.id}">${post.title}</a>
+                            </h1>
 
-                            <div class="row">
-                                <div class="col-xs-9">
-                                    <p class="post-body--short"><a href="/post/${post.id}">${post.body}</a></p>
-                                    <a href="/post/${post.id}" class="btn btn-default">Read more</a> <br><br>
+                            <div class="signature">
+                                <a href="/user/${post.userId}">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    ${post.user.name}
+                                </a>
 
-                                    <div>
-                                        <span class="glyphicon glyphicon-time"></span>
-                                        <span>${post.createdAt}</span>
-                                    </div>
+                                <b class="divider-slash"></b>
 
-                                </div>
+                                <span>
+                                    <i class="glyphicon glyphicon-time"></i>
+                                    ${post.createdAt}
+                                </span>
+
+                                <#if model.authUser?? && post.user == model.authUser>
+                                    <span>
+                                        <b class="divider-slash"></b>
+
+                                        <form role="form" action="/post/${post.id}/edit" method="get" style="display: inline-block;">
+                                            <a href="#" onclick="this.parentNode.submit()">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                edit
+                                            </a>
+                                        </form>
+
+                                        <b class="divider-slash"></b>
+
+                                        <form role="form" action="/post/${post.id}/remove" method="post" style="display: inline-block;">
+                                            <a href="#" onclick="this.parentNode.submit()">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                                remove
+                                            </a>
+                                        </form>
+                                    </span>
+                                </#if>
                             </div>
+
+                            <div class="post-body--short">
+                                <a href="/post/${post.id}">${post.body}</a>
+                            </div>
+
+                            <a href="/post/${post.id}" class="btn btn-default">Read more</a>
                         </div>
                     </div>
                 </div>

@@ -35,6 +35,31 @@ color:#d43f3a;
 }
 
 .post-body--short{
-max-height: 100px;
-overflow: hidden;
+    max-height: 100px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.divider-slash {
+    margin: 0 10px;
+}
+.divider-slash:before {
+    content: '|';
+}
+
+.signature {
+    color: #ccc;
+    font-size: .85em;
+}
+
+.signature a, span {
+    color: #666;
+}
+
+.signature a:hover {
+    color: #333;
+}
+
+.comments {
+    padding: 10px 0;
 }
