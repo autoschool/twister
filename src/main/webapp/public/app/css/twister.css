@@ -1,30 +1,37 @@
 .twister-title {
     font-size: 35px;
-    padding: 0 15px;
+    margin: 0 15px;
 }
+img.twister-title {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    width: 42px;
+    height: 42px;
+}
+
 a.twister-title {
     text-decoration: none;
 }
 .twister-title > span:nth-child(1) {
-    color: #337AB7;
+    color: #eb3d00;
 }
 .twister-title > span:nth-child(2) {
-    color: #ec971f;
+    color: #009049;
 }
 .twister-title > span:nth-child(3) {
-    color: #3C763D;
+    color: #0089e0;
 }
 .twister-title > span:nth-child(4) {
-    color: #d43f3a;
+    color: #ebce00;
 }
 .twister-title > span:nth-child(5) {
-    color: #337AB7;
+    color: #eb3d00;
 }
 .twister-title > span:nth-child(6) {
-    color: #ec971f;
+    color: #009049;
 }
 .twister-title > span:nth-child(7) {
-    color: #3C763D;
+    color: #0089e0;
 }
 
 .text-warning {

@@ -6,6 +6,8 @@
     <link href="/public/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <script src="/public/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
+    <link rel="icon" href="/public/app/img/twister.png" />
+
     <link href="/public/app/css/styles.css" type="text/css" rel="stylesheet"/>
     <link href="/public/app/css/twister.css" type="text/css" rel="stylesheet"/>
 
@@ -24,8 +26,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="twister-title">
-                    <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
+                <a href="/" >
+                    <span class="twister-title hidden-xs">
+                        <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
+                    </span>
+                    <img class="twister-title hidden-sm hidden-md hidden-lg" src="/public/app/img/twister.png" width="48" height="48" />
                 </a>
             </div>
 
