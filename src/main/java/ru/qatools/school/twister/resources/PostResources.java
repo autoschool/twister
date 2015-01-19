@@ -93,7 +93,7 @@ public class PostResources {
         comment.setUserId((int) authUser.getId());
         comment.saveIt();
 
-        response.sendRedirect("/post/" + fPostId);
+        response.sendRedirect("/post/" + fPostId + "#comment-" + comment.getId() );
 
         return "";
     }

@@ -57,9 +57,9 @@
 
                 <li class="list-group-item">
                     <div class="signature">
-                        <a href="/user/${comment.userId}">
+                        <a href="/user/${comment.userId}" name="comment-${comment.longId}">
                             <i class="glyphicon glyphicon-user"></i>
-                        ${comment.user.name}
+                            ${comment.user.name}
                         </a>
 
                         <b class="divider-slash"></b>
@@ -68,7 +68,6 @@
                             <i class="glyphicon glyphicon-time"></i>
                             ${comment.createdAt}
                         </span>
-
                     </div>
                     <div class="well-sm">
                         ${comment.body}
