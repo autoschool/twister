@@ -1,5 +1,7 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#macro layout title="Twister">
+<#import "../auth/login.ftl" as login />
+
 <html>
 <head>
     <script src="/public/jquery/js/jquery.min.js" type="text/javascript"></script>
@@ -59,10 +61,10 @@
                         </li>
                     <#else >
                         <li>
-                            <a href="/auth/register">Register</a>
+                            <a href="#" data-toggle="modal" data-target=".register-modal" >Register</a>
                         </li>
                         <li>
-                            <a href="/auth/signin">Sign in</a>
+                            <a href="#" data-toggle="modal" data-target=".signin-modal" >Sign in</a>
                         </li>
                     </#if>
                 </ul>
@@ -76,5 +78,7 @@
 <div class="container">
     <#nested />
 </div>
+<#include "/partials/login/modal.ftl">
+<#include "/partials/register/modal.ftl">
 </body>
 </#macro>

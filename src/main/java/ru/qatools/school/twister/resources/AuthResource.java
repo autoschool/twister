@@ -75,7 +75,7 @@ public class AuthResource {
         User user = User.findFirst("name = ? and pass_hash = ?", name, hash);
 
         if (user == null) {
-            System.out.println("name or password is wrong");
+            System.out.println("processLogin | name or password is wrong");
             response.sendRedirect( "/auth/error" );
 
             return "";
@@ -84,7 +84,7 @@ public class AuthResource {
         HttpSession session = request.getSession(true);
         session.setAttribute( USER_ID_ATTRIBUTE , user.getId() );
 
-        response.sendRedirect("/user/" + user.getId());
+        response.sendRedirect( request.getHeader("referer") );
 
         return "";
     }
