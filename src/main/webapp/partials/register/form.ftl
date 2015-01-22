@@ -1,5 +1,5 @@
 <form class="form" role="form" action="/auth/register" method="post">
-    <div class="page-header">
+    <div class="modal-body">
         <div class="form-group">
             <label for="name">Introduce yourself</label>
             <input type="text" class="form-control" id="register-name" name="register-name"
@@ -16,9 +16,7 @@
                    placeholder="Password">
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-danger pull-right" id="register-submit">Register</button>
-        </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-danger pull-right" id="register-submit">Register</button>
     </div>
 </form>
