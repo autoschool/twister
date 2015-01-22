@@ -1,6 +1,6 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
-<@layout.layout title="Twister.${model.profile.name}" >
+<@layout.layout title="Twister.${model.profile.login}" >
 <div class="row">
     <div class="col-xs-4">
         <#if model.profile.picture?? >

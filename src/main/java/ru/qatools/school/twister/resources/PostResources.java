@@ -84,7 +84,12 @@ public class PostResources {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String addComment(@PathParam("id") String fPostId,
                              @FormParam("commentBody") String fCommentBody) throws IOException {
-        
+
+        //todo: было бы неплохо говорить пользователю, что он болван, раз путается отправить пустой коммент
+        if ( fCommentBody.trim().isEmpty() ) {
+            return "";
+        }
+
         User authUser = (User) securityContext.getUserPrincipal();
 
         Comment comment = new Comment();

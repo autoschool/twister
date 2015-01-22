@@ -22,57 +22,34 @@ import java.io.IOException;
 @ErrorTemplate(name = "/error.ftl")
 public class AuthResource {
 
-    @GET
-    @Path("/register")
-    @Template(name = "/auth/register.ftl")
-    public ViewData showRegisterForm() {
-
-        ViewData view = new ViewData();
-
-        view.authUser = (User) securityContext.getUserPrincipal();
-
-        return view;
-    }
-
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String processRegister(@FormParam("name") String name,
-                                  @FormParam("pass") String hash) throws IOException {
+    public String processRegister(@FormParam("register-name") String name,
+                                  @FormParam("register-login") String login,
+                                  @FormParam("register-pass") String hash) throws IOException {
 
         User user = new User();
         user.setName(name);
+        user.setLogin(login);
         user.setPassHash(hash);
         user.saveIt();
 
         HttpSession session = request.getSession(true);
         session.setAttribute("userId", user.getId());
 
-        response.sendRedirect("/user/" + user.getId());
+        response.sendRedirect( "/user/" + user.getId() );
 
         return "";
-    }
-
-    @GET
-    @Path("/signin")
-    @Template(name = "/auth/login.ftl")
-    public ViewData showLoginForm() {
-
-        ViewData view = new ViewData();
-
-        view.authUser = (User) securityContext.getUserPrincipal();
-
-        return view;
-
     }
 
     @POST
     @Path("/signin")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String processLogin(@FormParam("name") String name,
-                               @FormParam("pass") String hash) throws IOException {
+    public String processLogin(@FormParam("signin-login") String login,
+                               @FormParam("signin-pass") String hash) throws IOException {
 
-        User user = User.findFirst("name = ? and pass_hash = ?", name, hash);
+        User user = User.findFirst("login = ? and pass_hash = ?", login, hash);
 
         if (user == null) {
             System.out.println("processLogin | name or password is wrong");
@@ -84,7 +61,8 @@ public class AuthResource {
         HttpSession session = request.getSession(true);
         session.setAttribute( USER_ID_ATTRIBUTE , user.getId() );
 
-        response.sendRedirect( request.getHeader("referer") );
+        String referer = request.getHeader( "referer" );
+        response.sendRedirect( isSystemPage( referer ) ? "/" : referer );
 
         return "";
     }
@@ -105,6 +83,10 @@ public class AuthResource {
     @Template(name = "/auth/error.ftl")
     public ViewData showLoginError() {
         return new ViewData();
+    }
+
+    private boolean isSystemPage( String path ) {
+        return path.contains( "/auth/error" ) || path.contains( "/404" );
     }
 
     final static String USER_ID_ATTRIBUTE = "userId";

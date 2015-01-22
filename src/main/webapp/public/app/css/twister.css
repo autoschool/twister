@@ -61,6 +61,7 @@ color:#d43f3a;
 
 .signature a, span {
     color: #666;
+    text-decoration: none;
 }
 
 .signature a:hover {

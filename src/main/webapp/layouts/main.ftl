@@ -1,7 +1,5 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#macro layout title="Twister">
-<#import "../auth/login.ftl" as login />
-
 <html>
 <head>
     <script src="/public/jquery/js/jquery.min.js" type="text/javascript"></script>
@@ -49,8 +47,8 @@
                     <#if model.authUser?? >
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                            ${model.authUser.name}
+                               id="userProfile" aria-expanded="false">
+                                    ${model.authUser.login}
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="caret"></span>
                             </a>
@@ -61,10 +59,10 @@
                         </li>
                     <#else >
                         <li>
-                            <a href="#" data-toggle="modal" data-target=".register-modal" >Register</a>
+                            <a href="#" id="register-button" data-toggle="modal" data-target=".register-modal" >Register</a>
                         </li>
                         <li>
-                            <a href="#" data-toggle="modal" data-target=".signin-modal" >Sign in</a>
+                            <a href="#" id="signin-button" data-toggle="modal" data-target=".signin-modal" >Sign in</a>
                         </li>
                     </#if>
                 </ul>

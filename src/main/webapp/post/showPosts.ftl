@@ -13,7 +13,7 @@
                     <div class="signature">
                         <a href="/user/${post.userId}">
                             <i class="glyphicon glyphicon-user"></i>
-                            ${post.user.name}
+                            ${post.user.login}
                         </a>
 
                         <b class="divider-slash"></b>

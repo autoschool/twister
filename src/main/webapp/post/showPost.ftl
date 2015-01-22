@@ -9,7 +9,7 @@
         <div class="signature">
             <a href="/user/${model.post.userId}">
                 <i class="glyphicon glyphicon-user"></i>
-                ${model.post.user.name}
+                ${model.post.user.login}
             </a>
 
             <b class="divider-slash"></b>
@@ -19,10 +19,10 @@
                 ${model.post.createdAt}
             </span>
 
-            <b class="divider-slash"></b>
-
             <span>
                 <#if model.authUser?? && model.post.user == model.authUser>
+                    <b class="divider-slash"></b>
+
                     <form role="form" action="/post/${model.post.id}/edit" method="get" style="display: inline-block;">
                         <a href="#" onclick="this.parentNode.submit()">
                             <span class="glyphicon glyphicon-pencil"></span>
