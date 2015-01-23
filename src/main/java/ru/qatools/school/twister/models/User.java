@@ -37,4 +37,12 @@ public class User extends Model implements Principal {
     public void setPicture(String picture) {
         setString("picture", picture);
     }
+
+    public void setLogin(String login) {
+        setString("login", login);
+    }
+
+    public String getLogin() {
+        return getString("login");
+    }
 }
