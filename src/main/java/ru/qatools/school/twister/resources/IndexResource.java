@@ -2,14 +2,12 @@ package ru.qatools.school.twister.resources;
 
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
-import ru.qatools.school.twister.context.AuthUser;
 import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.User;
 import ru.qatools.school.twister.view.ViewData;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,7 +15,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * eroshenkoam
@@ -66,6 +63,17 @@ public class IndexResource {
         response.sendRedirect(redirectUrl);
 
         return "";
+    }
+
+    @GET
+    @Path("/404")
+    @Template(name = "/404.ftl")
+    public ViewData notFound() throws IOException {
+        ViewData view = new ViewData();
+
+        view.authUser = (User) securityContext.getUserPrincipal();
+
+        return view;
     }
 
 }
