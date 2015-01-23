@@ -3,9 +3,12 @@
 <html>
 <head>
     <script src="/public/jquery/js/jquery.min.js" type="text/javascript"></script>
+
+    <#--<link href="http://bootswatch.com/paper/bootstrap.css" type="text/css" rel="stylesheet"/>-->
     <link href="/public/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <script src="/public/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
+    <script src="/public/app/js/scroller.js" type="text/javascript"></script>
     <link rel="icon" href="/public/app/img/twister.png" />
 
     <link href="/public/app/css/styles.css" type="text/css" rel="stylesheet"/>
@@ -48,7 +51,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                id="userProfile" aria-expanded="false">
-                                    ${model.authUser.login}
+                                    ${model.authUser.login?html}
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="caret"></span>
                             </a>
@@ -75,8 +78,8 @@
 
 <div class="container">
     <#nested />
+    <#include "/partials/login/modal.ftl">
+    <#include "/partials/register/modal.ftl">
 </div>
-<#include "/partials/login/modal.ftl">
-<#include "/partials/register/modal.ftl">
 </body>
 </#macro>

@@ -71,3 +71,26 @@ color:#d43f3a;
 .comments {
     padding: 10px 0;
 }
+
+
+.to-top {
+    z-index: 9000;
+    position: fixed;
+    left: 40px;
+    bottom: 40px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.to-top:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    cursor: pointer;
+}
+
+.to-top-button {
+    padding: 32px 12px 4px;
+    color: white;
+    background: #333333 url(/public/app/img/to-top.png) no-repeat 50% 11px;
+    border-radius: 7px;
+}

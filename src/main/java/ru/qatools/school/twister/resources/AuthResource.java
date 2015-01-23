@@ -86,7 +86,7 @@ public class AuthResource {
     }
 
     private boolean isSystemPage( String path ) {
-        return path.contains( "/auth/error" ) || path.contains( "/404" );
+        return path.contains( "error" ) || path.contains( "404" );
     }
 
     final static String USER_ID_ATTRIBUTE = "userId";

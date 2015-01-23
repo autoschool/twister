@@ -32,10 +32,14 @@ public class PostResources {
     @GET
     @Path("/{id}")
     @Template(name = "/post/showPost.ftl")
-    public ViewData showPost(@PathParam("id") int id) {
+    public ViewData showPost(@PathParam("id") int id) throws IOException {
         ViewData view = new ViewData();
         view.authUser = (User) securityContext.getUserPrincipal();
         view.post = Post.findById(id);
+
+        if ( view.post == null ) {
+            response.sendRedirect("/404" );
+        }
         return view;
     }
 
@@ -66,6 +70,11 @@ public class PostResources {
     public String createPost(@FormParam("title") String title,
                              @FormParam("body") String body) throws IOException {
 
+        if ( title.trim().isEmpty() || title.length() > 100 || body.trim().isEmpty() ) {
+            response.sendRedirect("/post/error" );
+            return "";
+        }
+
         User authUser = (User) securityContext.getUserPrincipal();
 
         Post post = new Post();
@@ -85,8 +94,8 @@ public class PostResources {
     public String addComment(@PathParam("id") String fPostId,
                              @FormParam("commentBody") String fCommentBody) throws IOException {
 
-        //todo: было бы неплохо говорить пользователю, что он болван, раз путается отправить пустой коммент
         if ( fCommentBody.trim().isEmpty() ) {
+            response.sendRedirect("/post/" + fPostId + "/emptyComment" );
             return "";
         }
 
@@ -101,6 +110,27 @@ public class PostResources {
         response.sendRedirect("/post/" + fPostId + "#comment-" + comment.getId() );
 
         return "";
+    }
+
+
+    @GET
+    @Path("/error")
+    @Template(name = "/post/postError.ftl")
+    public ViewData postError(@PathParam("id") int id) {
+        ViewData view = new ViewData();
+        view.authUser = (User) securityContext.getUserPrincipal();
+        view.post = Post.findById(id);
+        return view;
+    }
+
+    @GET
+    @Path("/{id}/emptyComment")
+    @Template(name = "/post/comments/emptyComment.ftl")
+    public ViewData emptyComment(@PathParam("id") int id) {
+        ViewData view = new ViewData();
+        view.authUser = (User) securityContext.getUserPrincipal();
+        view.post = Post.findById(id);
+        return view;
     }
 
     @GET
