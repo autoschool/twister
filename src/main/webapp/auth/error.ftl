@@ -6,8 +6,12 @@
 
     <div class="col-md-offset-4 col-md-4">
         <div class="alert alert-danger" role="alert">
-
-            Wrong user name or password. Please, <a class="alert-link" href="#" id="signin-button" data-toggle="modal" data-target=".signin-modal" >try again</a>.
+            Wrong user name or password.
+            Please,
+                <a class="alert-link" href="#" id="signin-button"
+                   data-toggle="modal" data-target=".signin-modal" >
+                    try again
+                </a>.
         </div>
     </div>
 </div>
