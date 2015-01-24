@@ -22,61 +22,71 @@ import java.io.IOException;
 @ErrorTemplate(name = "/error.ftl")
 public class AuthResource {
 
-    @GET
-    @Path("/register")
-    @Template(name = "/auth/register.ftl")
-    public ViewData showRegisterForm() {
-
-        ViewData view = new ViewData();
-
-        view.authUser = (User) securityContext.getUserPrincipal();
-
-        return view;
-    }
-
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String processRegister(@FormParam("name") String name,
-                                  @FormParam("pass") String hash) throws IOException {
+    public String processRegister(@FormParam("register-name") String name,
+                                  @FormParam("register-login") String login,
+                                  @FormParam("register-pass") String hash) throws IOException {
+
+        if ( !dataIsValid( name, login, hash ) ) {
+            response.sendRedirect( "/auth/register/error" );
+            return "";
+        }
+
+        if ( userExists( login ) ) {
+            response.sendRedirect( "/auth/register/userExists" );
+            return "";
+        }
 
         User user = new User();
         user.setName(name);
+        user.setLogin(login);
         user.setPassHash(hash);
         user.saveIt();
 
         HttpSession session = request.getSession(true);
         session.setAttribute("userId", user.getId());
 
-        response.sendRedirect("/user/" + user.getId());
+        response.sendRedirect( "/user/" + user.getId() );
 
         return "";
     }
 
-    @GET
-    @Path("/signin")
-    @Template(name = "/auth/login.ftl")
-    public ViewData showLoginForm() {
 
+    @GET
+    @Path("/register/error")
+    @Template(name = "/partials/register/error.ftl")
+    public ViewData showRegisterError() {
         ViewData view = new ViewData();
 
         view.authUser = (User) securityContext.getUserPrincipal();
 
         return view;
+    }
 
+    @GET
+    @Path("/register/userExists")
+    @Template(name = "/partials/register/userExistsError.ftl")
+    public ViewData showUserExistsError() {
+        ViewData view = new ViewData();
+
+        view.authUser = (User) securityContext.getUserPrincipal();
+
+        return new ViewData();
     }
 
     @POST
     @Path("/signin")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String processLogin(@FormParam("name") String name,
-                               @FormParam("pass") String hash) throws IOException {
+    public String processLogin(@FormParam("signin-login") String login,
+                               @FormParam("signin-pass") String hash) throws IOException {
 
-        User user = User.findFirst("name = ? and pass_hash = ?", name, hash);
+        User user = User.findFirst("login = ? and pass_hash = ?", login, hash);
 
         if (user == null) {
-            System.out.println("name or password is wrong");
-            response.sendRedirect( "/auth/error" );
+            System.out.println("processLogin | name or password is wrong");
+            response.sendRedirect( "/auth/signin/error" );
 
             return "";
         }
@@ -84,7 +94,8 @@ public class AuthResource {
         HttpSession session = request.getSession(true);
         session.setAttribute( USER_ID_ATTRIBUTE , user.getId() );
 
-        response.sendRedirect("/user/" + user.getId());
+        String referer = request.getHeader( "referer" );
+        response.sendRedirect( isSystemPage( referer ) ? "/" : referer );
 
         return "";
     }
@@ -101,10 +112,23 @@ public class AuthResource {
     }
 
     @GET
-    @Path("/error")
-    @Template(name = "/auth/error.ftl")
+    @Path("/signin/error")
+    @Template(name = "/partials/login/error.ftl")
     public ViewData showLoginError() {
         return new ViewData();
+    }
+
+    private boolean dataIsValid(String name, String login, String hash) {
+        return !name.trim().isEmpty() && !login.trim().isEmpty() && !hash.isEmpty();
+    }
+
+    private boolean userExists( String login ) {
+        User tmpUser = User.findFirst("login = ?", login);
+        return tmpUser != null;
+    }
+
+    private boolean isSystemPage( String path ) {
+        return path.toLowerCase().contains( "error" ) || path.contains( "404" );
     }
 
     final static String USER_ID_ATTRIBUTE = "userId";

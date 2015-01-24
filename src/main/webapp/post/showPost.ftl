@@ -1,70 +1,41 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
+<#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
-<@layout.layout title="Twister">
+<#import "../partials/post/body.ftl" as postBody />
+<#import "../partials/comment/body.ftl" as commentBody />
+<@layout.layout title="${model.post.title} - Twister">
 <div class="row">
 <div class="col-md-12">
-    <div class="page-header">
-        <h2>${model.post.title}</h2>
-    </div>
-    <div class="post-body">
-    ${model.post.body}
+    <div class="panel panel-default">
+        <@postBody.postTemplate post=model.post isPreview=false />
 
-        <div>
-            <a href="/user/${model.post.userId}">
-            <span class="glyphicon glyphicon-user"></span>
-            <span>${model.post.user.name}</span>
-                </a>
-        </div>
-        <div>
-            <span class="glyphicon glyphicon-time"></span>
-            <span>${model.post.createdAt}</span>
-        </div>
-        <div class="btn-group">
-            <#if model.authUser?? && model.post.user == model.authUser>
-                <form class="form" role="form" action="/post/${model.post.id}/edit" method="get" style="display: inline-block;">
-                    <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        edit
-                    </button>
-                </form>
-                <form class="form" role="form" action="/post/${model.post.id}/remove" method="post" style="display: inline-block;">
-                    <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        remove
-                    </button>
-                </form>
-            </#if>
-        </div>
-        <div>
+        <div class="panel-footer">
+            <a name="comments">
+                <h5>Comments (${model.post.comments?size})</h5>
+            </a>
 
-        </div>
-        <div class="panel-body">
             <ul class="list-group">
                 <#list model.post.comments as comment>
-
-                    <li class="list-group-item">${comment.body}</li>
-
+                    <@commentBody.commentTemplate comment=comment />
                 </#list>
             </ul>
 
-        <#if model.authUser?? >
-            <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
-                <div class="form-group">
-                    <textarea class="form-control" rows="3" name="commentBody"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-default pull-right">Add Comment</button>
+            <a name="lastComment"></a>
+
+            <#if model.authUser?? >
+                <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
+                    <div class="styled-input wide">
+                        <textarea rows="3" name="commentBody" required></textarea>
+                        <label>Comment body</label>
+                        <span></span>
                     </div>
+                    <button type="submit" class="btn btn-default">Add Comment</button>
+                </form>
+            <#else >
+                <div class="alert alert-warning" role="alert">
+                    Only authorised user can comment. Please, <a class="alert-link" href="/auth/signin" >sign in</a>.
                 </div>
-            </form>
-        <#else >
-            <div class="alert alert-warning" role="alert">
-                Only authorised user can comment. Please, <a class="alert-link" href="/auth/signin" >sign in</a>.
-            </div>
-        </#if>
-            <div>
-            </div>
+            </#if>
         </div>
     </div>
 </@layout.layout>
