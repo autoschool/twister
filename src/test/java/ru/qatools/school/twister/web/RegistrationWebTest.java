@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +14,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class RegisterPageWebTest {
+public class RegistrationWebTest {
 	
 	private static final String USER_NAME = "admin";
 
@@ -23,7 +22,8 @@ public class RegisterPageWebTest {
 	
 	private static final String REGISTER_BUTTON_TEXT = "Register";
 	private static final String REGISTER_URL = "http://localhost:8080/";
-	private static final String USER_NAME_PLACEHOLDER = "Login";
+	private static final String USER_NAME_PLACEHOLDER = "Please, enter your real name";
+	private static final String USER_LOGIN_PLACEHOLDER = "Login";
 	private static final String USER_PASS_PLACEHOLDER = "Password";
 	
 	@Before
@@ -32,8 +32,8 @@ public class RegisterPageWebTest {
 		WebElement registerButton = driver.findElement(By.id("register-button"));
 		registerButton.click();
 	}
-	
-	@Test
+
+	@Test (timeout = 1000)
 	public void addUserButtonExistsTest() {
 		WebElement submitButton = driver.findElement(By.id("register-submit"));
 		String buttonText = submitButton.getText();
@@ -42,30 +42,40 @@ public class RegisterPageWebTest {
 	}
 	
 	@Test (timeout = 30000)
-	@Ignore
 	public void addUserButtonPressToProfileTest() {
+		driver.findElement(By.id("register-name")).sendKeys(USER_NAME);
 		driver.findElement(By.id("register-login")).sendKeys(USER_NAME);
 		driver.findElement(By.id("register-pass")).sendKeys(USER_NAME);
 		WebElement submitButton = driver.findElement(By.id("register-submit"));
 		submitButton.click();
 		
-		new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.id("userProfile")));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
 		
-	    String name = driver.findElement(By.id("userProfile")).getText();
+	    String name = driver.findElement(By.id("username")).getText();
 	    assertThat(name, equalTo(USER_NAME));
 	}
-	
-	@Test
-	public void textFieldUserExistsTest() {
+
+	@Test (timeout = 1000)
+	public void textFieldNameExistsTest() {
+		String tfUserText = driver.findElement(By.id("register-name")).getText();
+		String tfUserTextPlaceholder = driver.findElement(By.id("register-name")).getAttribute("placeholder");
+
+		assertThat(tfUserText, notNullValue());
+		assertThat(tfUserText, equalTo(""));
+		assertThat(tfUserTextPlaceholder, equalTo(USER_NAME_PLACEHOLDER));
+	}
+
+	@Test (timeout = 1000)
+	public void textFieldLoginExistsTest() {
 		String tfUserText = driver.findElement(By.id("register-login")).getText();
 		String tfUserTextPlaceholder = driver.findElement(By.id("register-login")).getAttribute("placeholder");
 		
 	    assertThat(tfUserText, notNullValue());
 	    assertThat(tfUserText, equalTo(""));
-	    assertThat(tfUserTextPlaceholder, equalTo(USER_NAME_PLACEHOLDER));
+	    assertThat(tfUserTextPlaceholder, equalTo(USER_LOGIN_PLACEHOLDER));
 	}
-	
-	@Test
+
+	@Test (timeout = 1000)
 	public void textFieldPasswordExistsTest() {
 		String tfPassText = driver.findElement(By.id("register-pass")).getText();
 		String tfPassTextPlaceholder = driver.findElement(By.id("register-pass")).getAttribute("placeholder");
