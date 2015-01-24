@@ -58,13 +58,21 @@ public class AuthResource {
     @Path("/register/error")
     @Template(name = "/partials/register/error.ftl")
     public ViewData showRegisterError() {
-        return new ViewData();
+        ViewData view = new ViewData();
+
+        view.authUser = (User) securityContext.getUserPrincipal();
+
+        return view;
     }
 
     @GET
     @Path("/register/userExists")
     @Template(name = "/partials/register/userExistsError.ftl")
     public ViewData showUserExistsError() {
+        ViewData view = new ViewData();
+
+        view.authUser = (User) securityContext.getUserPrincipal();
+
         return new ViewData();
     }
 
@@ -120,7 +128,7 @@ public class AuthResource {
     }
 
     private boolean isSystemPage( String path ) {
-        return path.contains( "error" ) || path.contains( "404" );
+        return path.toLowerCase().contains( "error" ) || path.contains( "404" );
     }
 
     final static String USER_ID_ATTRIBUTE = "userId";

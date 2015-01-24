@@ -1,6 +1,6 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
-<#import "/layouts/main.ftl" as layout />
-<#import "/partials/post/body.ftl" as postBody />
+<#import "../layouts/main.ftl" as layout />
+<#import "../partials/post/body.ftl" as postBody />
 <@layout.layout title="Twister">
 <div class="row">
     <div class="col-xs-12">

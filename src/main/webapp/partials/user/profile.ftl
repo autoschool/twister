@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
-<#import "../layouts/main.ftl" as layout />
+<#import "../../layouts/main.ftl" as layout />
 <@layout.layout title="Twister.${model.profile.login?html}" >
 <div class="row">
     <div class="col-xs-4">
@@ -11,7 +11,7 @@
     <div class="col-xs-8" id="username">
         <H1>${model.profile.name?html}</H1> <br>
         With Twister since
-    ${model.profile.createdAt}
+        ${model.profile.createdAt}
     </div>
 
 

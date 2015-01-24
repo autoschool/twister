@@ -126,8 +126,8 @@ public class PostResources {
 
     @GET
     @Path("/{id}/addComment/error")
-    @Template(name = "/post/comments/emptyComment.ftl")
-    public ViewData emptyComment(@PathParam("id") int id) {
+    @Template(name = "/partials/comment/emptyCommentError.ftl")
+    public ViewData emptyCommentError(@PathParam("id") int id) {
         ViewData view = new ViewData();
         view.authUser = (User) securityContext.getUserPrincipal();
         view.post = Post.findById(id);

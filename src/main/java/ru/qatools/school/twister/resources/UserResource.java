@@ -25,7 +25,7 @@ public class UserResource {
 
     @GET
     @Path("/{id}")
-    @Template(name = "/user/profile.ftl")
+    @Template(name = "/partials/user/profile.ftl")
     public ViewData showUser(@PathParam("id") int id) {
         ViewData view = new ViewData();
 
@@ -46,6 +46,15 @@ public class UserResource {
         response.sendRedirect("/user/" + authUser.getId());
 
         return "";
+    }
+
+    @GET
+    @Path("/profile/sessionExpiredError")
+    @Template(name = "/partials/user/sessionExpired.ftl")
+    public ViewData sessionExpired() throws IOException {
+        ViewData view = new ViewData();
+        view.authUser = (User) securityContext.getUserPrincipal();
+        return view;
     }
 
 }

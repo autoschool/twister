@@ -2,7 +2,7 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
 <#import "../partials/post/body.ftl" as postBody />
-<#import "../partials/comments/comment.ftl" as commentBody />
+<#import "../partials/comment/body.ftl" as commentBody />
 <@layout.layout title="${model.post.title} - Twister">
 <div class="row">
 <div class="col-md-12">
