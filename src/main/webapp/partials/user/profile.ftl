@@ -18,6 +18,8 @@
 </div>
 
 <div class="row" style="margin-top: 20px">
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
     <#if model.authUser?? && model.profile == model.authUser>
         <form action="/user/save" method="post">
 
@@ -31,6 +33,7 @@
             </div>
         </form>
     </#if>
+    </div>
 </div>
 
 

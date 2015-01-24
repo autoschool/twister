@@ -3,7 +3,7 @@
 <#import "../partials/post/body.ftl" as postBody />
 <@layout.layout title="Twister">
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8 ">
         <#list model.posts as post>
             <div class="panel panel-default">
                 <@postBody.postTemplate post=post isPreview=true />
