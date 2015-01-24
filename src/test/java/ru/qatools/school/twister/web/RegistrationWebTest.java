@@ -31,9 +31,10 @@ public class RegistrationWebTest {
 	    driver.get(REGISTER_URL);
 		WebElement registerButton = driver.findElement(By.id("register-button"));
 		registerButton.click();
+		new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.className("register-modal")));
 	}
 
-	@Test (timeout = 1000)
+	@Test (timeout = 10000)
 	public void addUserButtonExistsTest() {
 		WebElement submitButton = driver.findElement(By.id("register-submit"));
 		String buttonText = submitButton.getText();
@@ -55,7 +56,7 @@ public class RegistrationWebTest {
 	    assertThat(name, equalTo(USER_NAME));
 	}
 
-	@Test (timeout = 1000)
+	@Test (timeout = 10000)
 	public void textFieldNameExistsTest() {
 		String tfUserText = driver.findElement(By.id("register-name")).getText();
 		String tfUserTextPlaceholder = driver.findElement(By.id("register-name")).getAttribute("placeholder");
@@ -65,7 +66,7 @@ public class RegistrationWebTest {
 		assertThat(tfUserTextPlaceholder, equalTo(USER_NAME_PLACEHOLDER));
 	}
 
-	@Test (timeout = 1000)
+	@Test (timeout = 10000)
 	public void textFieldLoginExistsTest() {
 		String tfUserText = driver.findElement(By.id("register-login")).getText();
 		String tfUserTextPlaceholder = driver.findElement(By.id("register-login")).getAttribute("placeholder");
@@ -75,7 +76,7 @@ public class RegistrationWebTest {
 	    assertThat(tfUserTextPlaceholder, equalTo(USER_LOGIN_PLACEHOLDER));
 	}
 
-	@Test (timeout = 1000)
+	@Test (timeout = 10000)
 	public void textFieldPasswordExistsTest() {
 		String tfPassText = driver.findElement(By.id("register-pass")).getText();
 		String tfPassTextPlaceholder = driver.findElement(By.id("register-pass")).getAttribute("placeholder");
