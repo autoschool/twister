@@ -8,6 +8,9 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <script src="/public/app/js/scroller.js" type="text/javascript"></script>
+    <link rel="icon" href="/public/app/img/twister.png" />
+
     <link href="/public/app/css/styles.css" type="text/css" rel="stylesheet"/>
     <link href="/public/app/css/twister.css" type="text/css" rel="stylesheet"/>
 
@@ -26,8 +29,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="twister-title">
-                    <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
+                <a href="/" >
+                    <span class="twister-title hidden-xs">
+                        <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
+                    </span>
+                    <img class="twister-title hidden-sm hidden-md hidden-lg" src="/public/app/img/twister.png" width="48" height="48" />
                 </a>
             </div>
 
@@ -44,8 +50,8 @@
                     <#if model.authUser?? >
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                            ${model.authUser.name}
+                               id="userProfile" aria-expanded="false">
+                                    ${model.authUser.login?html}
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="caret"></span>
                             </a>
@@ -56,10 +62,10 @@
                         </li>
                     <#else >
                         <li>
-                            <a href="/auth/register">Register</a>
+                            <a href="#" id="register-button" data-toggle="modal" data-target=".register-modal" >Register</a>
                         </li>
                         <li>
-                            <a href="/auth/signin">Sign in</a>
+                            <a href="#" id="signin-button" data-toggle="modal" data-target=".signin-modal" >Sign in</a>
                         </li>
                     </#if>
                 </ul>
@@ -72,6 +78,8 @@
 
 <div class="container">
     <#nested />
+    <#include "/partials/login/modal.ftl">
+    <#include "/partials/register/modal.ftl">
 </div>
 </body>
 </#macro>
