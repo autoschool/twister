@@ -9,7 +9,7 @@
     <div class="panel panel-default">
         <@postBody.postTemplate post=model.post isPreview=false />
 
-        <div class="panel-footer">
+        <div class="panel-footer comments">
             <a name="comments">
                 <h5>Comments (${model.post.comments?size})</h5>
             </a>

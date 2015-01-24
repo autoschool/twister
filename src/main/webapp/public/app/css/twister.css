@@ -72,6 +72,10 @@ color:#d43f3a;
     padding: 0 5px;
 }
 
+.comments .list-group {
+    margin-bottom: 0 !important;
+}
+
 .to-top {
     z-index: 9000;
     position: fixed;
@@ -114,7 +118,7 @@ input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid
 .styled-input {
     float: left;
     width: 33.3333%;
-    margin: 1em 0 1em;
+    margin: 2em 0 1em;
     position: relative;
 }
 
