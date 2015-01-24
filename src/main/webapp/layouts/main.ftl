@@ -2,11 +2,11 @@
 <#macro layout title="Twister">
 <html>
 <head>
-    <script src="/public/jquery/js/jquery.min.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-    <#--<link href="http://bootswatch.com/paper/bootstrap.css" type="text/css" rel="stylesheet"/>-->
-    <link href="/public/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <script src="/public/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <script src="/public/app/js/scroller.js" type="text/javascript"></script>
     <link rel="icon" href="/public/app/img/twister.png" />
