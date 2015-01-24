@@ -6,12 +6,9 @@
     <div class="col-xs-12">
         <#list model.posts as post>
             <div class="panel panel-default">
-                <div class="panel-body">
-
-                    <@postBody.postTemplate post=post isPreview=true />
-
+                <@postBody.postTemplate post=post isPreview=true />
+                <div class="panel-footer">
                     <a href="/post/${post.id}" class="btn btn-default">Read more</a>
-
                 </div>
             </div>
         </#list>

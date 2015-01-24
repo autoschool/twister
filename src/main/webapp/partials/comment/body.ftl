@@ -3,18 +3,18 @@
 <li class="list-group-item">
     <div class="signature">
         <a href="/user/${comment.userId}" name="comment-${comment.longId}">
-            <i class="glyphicon glyphicon-user"></i>
+            <i class="fa fa-user"></i>
             ${comment.user.name?html}
         </a>
 
         <b class="divider-slash"></b>
 
         <span>
-            <i class="glyphicon glyphicon-time"></i>
+            <i class="fa fa-clock-o"></i>
             ${comment.createdAt}
         </span>
     </div>
-    <div class="well-sm">
+    <div class="commentBody">
         ${comment.body?html}
     </div>
 </li>

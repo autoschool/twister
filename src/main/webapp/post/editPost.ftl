@@ -1,25 +1,24 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
+<#import "../partials/post/form.ftl" as postForm />
+
 <@layout.layout title="Edit post - Twister">
-<div class="row">
-    <div class="col-md-12">
-        <form class="form" role="form" action="/post/edit" method="post">
-            <input type="hidden" value="${model.post.id}" name="id">
-            <div class="page-header">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="title" name="title"
-                           placeholder="Post Title" value="${model.post.title}">
-                </div>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="10" name="body">${model.post.body}</textarea>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-danger pull-right" id="publish">Update</button>
-                </div>
-            </div>
-        </form>
+<#if model.authUser?? && model.post.user == model.authUser>
+    <div class="panel panel-default">
+        <@postForm.postFormTemplate action="/post/edit" />
     </div>
-</div>
+<#elseif model.authUser?? >
+    <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+        <div class="alert alert-warning" role="alert">
+            You can edit only your own posts.
+    </div>
+<#else >
+    <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+        <div class="alert alert-warning" role="alert">
+            You can edit only your own posts.<br/>
+            But if you sure that this one really yours, please
+            <a href="#" data-toggle="modal" data-target=".signin-modal" >sign in</a>.
+        </div>
+    </div>
+</#if>
 </@layout.layout>

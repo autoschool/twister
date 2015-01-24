@@ -60,6 +60,8 @@ public class PostResources {
         ViewData view = new ViewData();
         view.authUser = (User) securityContext.getUserPrincipal();
         view.post = new Post();
+        view.post.setTitle("");
+        view.post.setBody("");
 
         return view;
     }

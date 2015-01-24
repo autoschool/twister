@@ -6,37 +6,36 @@
 <@layout.layout title="${model.post.title} - Twister">
 <div class="row">
 <div class="col-md-12">
-    <div class="page-header">
+    <div class="panel panel-default">
         <@postBody.postTemplate post=model.post isPreview=false />
-    </div>
 
-    <div class="comments">
-        <a name="comments">
-            <h3>Comments (${model.post.comments?size})</h3>
-        </a>
+        <div class="panel-footer">
+            <a name="comments">
+                <h5>Comments (${model.post.comments?size})</h5>
+            </a>
 
-        <ul class="list-group">
-            <#list model.post.comments as comment>
-                <@commentBody.commentTemplate comment=comment />
-            </#list>
-        </ul>
+            <ul class="list-group">
+                <#list model.post.comments as comment>
+                    <@commentBody.commentTemplate comment=comment />
+                </#list>
+            </ul>
 
-        <#if model.authUser?? >
-            <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
-                <div class="form-group">
-                    <textarea class="form-control" rows="3" name="commentBody"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-default">Add Comment</button>
+            <a name="lastComment"></a>
+
+            <#if model.authUser?? >
+                <form class="form" role="form" action="/post/${model.post.id}/addComment" method="post">
+                    <div class="styled-input wide">
+                        <textarea rows="3" name="commentBody" required></textarea>
+                        <label>Comment body</label>
+                        <span></span>
                     </div>
+                    <button type="submit" class="btn btn-default">Add Comment</button>
+                </form>
+            <#else >
+                <div class="alert alert-warning" role="alert">
+                    Only authorised user can comment. Please, <a class="alert-link" href="/auth/signin" >sign in</a>.
                 </div>
-            </form>
-        <#else >
-            <div class="alert alert-warning" role="alert">
-                Only authorised user can comment. Please, <a class="alert-link" href="/auth/signin" >sign in</a>.
-            </div>
-        </#if>
-        <a name="lastComment"></a>
+            </#if>
+        </div>
     </div>
 </@layout.layout>
