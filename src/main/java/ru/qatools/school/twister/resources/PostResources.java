@@ -88,6 +88,17 @@ public class PostResources {
         return "";
     }
 
+    @GET
+    @Path("/error")
+    @Template(name = "/post/postError.ftl")
+    public ViewData postError(@PathParam("id") int id) {
+        ViewData view = new ViewData();
+        view.authUser = (User) securityContext.getUserPrincipal();
+        view.post = Post.findById(id);
+        return view;
+    }
+
+
     @POST
     @Path("/{id}/addComment")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -95,7 +106,7 @@ public class PostResources {
                              @FormParam("commentBody") String fCommentBody) throws IOException {
 
         if ( fCommentBody.trim().isEmpty() ) {
-            response.sendRedirect("/post/" + fPostId + "/emptyComment" );
+            response.sendRedirect("/post/" + fPostId + "/addComment/error" );
             return "";
         }
 
@@ -114,17 +125,7 @@ public class PostResources {
 
 
     @GET
-    @Path("/error")
-    @Template(name = "/post/postError.ftl")
-    public ViewData postError(@PathParam("id") int id) {
-        ViewData view = new ViewData();
-        view.authUser = (User) securityContext.getUserPrincipal();
-        view.post = Post.findById(id);
-        return view;
-    }
-
-    @GET
-    @Path("/{id}/emptyComment")
+    @Path("/{id}/addComment/error")
     @Template(name = "/post/comments/emptyComment.ftl")
     public ViewData emptyComment(@PathParam("id") int id) {
         ViewData view = new ViewData();
