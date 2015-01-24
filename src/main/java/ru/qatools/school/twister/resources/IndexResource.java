@@ -57,7 +57,7 @@ public class IndexResource {
         if (authUser != null) {
             redirectUrl = "/user/" + authUser.getId();
         } else {
-            redirectUrl = "/user/sessionExpiredError";
+            redirectUrl = "/profile/sessionExpiredError";
         }
 
         response.sendRedirect(redirectUrl);
