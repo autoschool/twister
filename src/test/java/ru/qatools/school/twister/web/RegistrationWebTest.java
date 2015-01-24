@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,7 @@ public class RegistrationWebTest {
 	}
 
 	@Test (timeout = 10000)
+	@Ignore
 	public void addUserButtonExistsTest() {
 		WebElement submitButton = driver.findElement(By.id("register-submit"));
 		String buttonText = submitButton.getText();
@@ -43,6 +45,7 @@ public class RegistrationWebTest {
 	}
 	
 	@Test (timeout = 30000)
+	@Ignore
 	public void addUserButtonPressToProfileTest() {
 		driver.findElement(By.id("register-name")).sendKeys(USER_NAME);
 		driver.findElement(By.id("register-login")).sendKeys(USER_NAME);
@@ -57,6 +60,7 @@ public class RegistrationWebTest {
 	}
 
 	@Test (timeout = 10000)
+	@Ignore
 	public void textFieldNameExistsTest() {
 		String tfUserText = driver.findElement(By.id("register-name")).getText();
 		String tfUserTextPlaceholder = driver.findElement(By.id("register-name")).getAttribute("placeholder");
@@ -67,6 +71,7 @@ public class RegistrationWebTest {
 	}
 
 	@Test (timeout = 10000)
+	@Ignore
 	public void textFieldLoginExistsTest() {
 		String tfUserText = driver.findElement(By.id("register-login")).getText();
 		String tfUserTextPlaceholder = driver.findElement(By.id("register-login")).getAttribute("placeholder");
@@ -77,6 +82,7 @@ public class RegistrationWebTest {
 	}
 
 	@Test (timeout = 10000)
+	@Ignore
 	public void textFieldPasswordExistsTest() {
 		String tfPassText = driver.findElement(By.id("register-pass")).getText();
 		String tfPassTextPlaceholder = driver.findElement(By.id("register-pass")).getAttribute("placeholder");
