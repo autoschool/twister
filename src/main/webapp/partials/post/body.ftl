@@ -4,7 +4,7 @@
 <div class="panel-heading">
     <h4>
         <#if isPreview>
-            <a href="/post/${post.id}">${post.title?html}</a>
+            <a class="post-title" href="/post/${post.id}">${post.title?html}</a>
         <#else>
             ${post.title?html}
         </#if>

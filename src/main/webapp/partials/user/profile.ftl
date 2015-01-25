@@ -8,8 +8,8 @@
                  class="img-rounded img-responsive center-block">
         </#if>
     </div>
-    <div class="col-xs-8" id="username">
-        <H1>${model.profile.name?html}</H1> <br>
+    <div class="col-xs-8" >
+        <H1 id="username">${model.profile.name?html}</H1> <br>
         With Twister since
         ${model.profile.createdAt}
     </div>
