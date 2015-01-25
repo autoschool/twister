@@ -118,7 +118,7 @@ input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid
 .styled-input {
     float: left;
     width: 33.3333%;
-    margin: 2em 0 1em;
+    margin: 2em 0 .33em;
     position: relative;
 }
 
@@ -169,4 +169,22 @@ textarea:focus ~ span {
 textarea {
     width: 100%;
     min-height: 3em;
+}
+
+.uploader .uploadcare-widget-button-open , .uploadcare-widget-status{
+    margin: 0 !important;
+}
+.uploader input {
+    display: none;
+}
+
+.user-info {
+    max-height: 260px;
+}
+
+.user-avatar {
+    max-height: 180px;
+}
+.user-profile-collapse-button {
+    height: 65px;
 }

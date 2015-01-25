@@ -2,7 +2,7 @@
 <#-- @ftlvariable name="model" type="ru.qatools.school.twister.view.ViewData" -->
 <#import "../layouts/main.ftl" as layout />
 <#import "../partials/post/body.ftl" as postBody />
-<#import "../partials/comment/body.ftl" as commentBody />
+<#import "../partials/comment/list.ftl" as commentList />
 <@layout.layout title="${model.post.title} - Twister">
 <div class="row">
 <div class="col-md-12">
@@ -14,11 +14,7 @@
                 <h5>Comments (${model.post.comments?size})</h5>
             </a>
 
-            <ul class="list-group">
-                <#list model.post.comments as comment>
-                    <@commentBody.commentTemplate comment=comment />
-                </#list>
-            </ul>
+            <@commentList.commentListTemplate comments=model.post.comments inPost=true/>
 
             <a name="lastComment"></a>
 

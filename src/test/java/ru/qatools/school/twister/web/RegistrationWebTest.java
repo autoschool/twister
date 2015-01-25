@@ -56,7 +56,7 @@ public class RegistrationWebTest {
 		WebElement submitButton = driver.findElement(By.id("register-submit"));
 		submitButton.click();
 		
-		new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.id("user-profile-name")));
 		
 	    String name = driver.findElement(By.id("user-menu")).getText();
 	    assertThat(name, equalTo(USER_NAME));

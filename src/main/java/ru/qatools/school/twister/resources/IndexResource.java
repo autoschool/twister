@@ -34,6 +34,10 @@ public class IndexResource {
     @Context
     SecurityContext securityContext;
 
+    static boolean isSystemPage(String path) {
+        return path.toLowerCase().contains( "error" ) || path.contains( "404" );
+    }
+
     @GET
     @Path("/")
     @Template(name = "/post/showPosts.ftl")

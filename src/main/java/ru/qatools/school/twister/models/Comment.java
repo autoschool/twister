@@ -5,9 +5,13 @@ import java.sql.Timestamp;
 import org.javalite.activejdbc.Model;
 
 public class Comment extends Model {
-	
+
 	public int getPost() {
         return getInteger("post_id");
+    }
+
+    public String getPostTitle() {
+        return Post.findById( getPost() ).getString("title");
     }
 
     public void setPost(int fPostId) {

@@ -7,6 +7,7 @@ import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.User;
 import ru.qatools.school.twister.view.ViewData;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -25,6 +26,9 @@ public class PostResources {
 
     @Context
     HttpServletResponse response;
+
+    @Context
+    HttpServletRequest request;
 
     @Context
     SecurityContext securityContext;
@@ -176,7 +180,8 @@ public class PostResources {
         }
         post.delete();
 
-        response.sendRedirect( "/post/all" );
+        String referer = request.getHeader( "referer" );
+        response.sendRedirect( IndexResource.isSystemPage(referer) ? "/" : referer );
 
         return "";
     }

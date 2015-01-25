@@ -95,7 +95,7 @@ public class AuthResource {
         session.setAttribute( USER_ID_ATTRIBUTE , user.getId() );
 
         String referer = request.getHeader( "referer" );
-        response.sendRedirect( isSystemPage( referer ) ? "/" : referer );
+        response.sendRedirect( IndexResource.isSystemPage(referer) ? "/" : referer );
 
         return "";
     }
@@ -125,10 +125,6 @@ public class AuthResource {
     private boolean userExists( String login ) {
         User tmpUser = User.findFirst("login = ?", login);
         return tmpUser != null;
-    }
-
-    private boolean isSystemPage( String path ) {
-        return path.toLowerCase().contains( "error" ) || path.contains( "404" );
     }
 
     final static String USER_ID_ATTRIBUTE = "userId";
