@@ -8,6 +8,7 @@
     <link href="/public/app/css/bootstrap-paper.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+
     <script src="/public/app/js/scroller.js" type="text/javascript"></script>
     <link rel="icon" href="/public/app/img/twister.png" />
 
@@ -23,13 +24,13 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-9">
+                        data-target="#bs-example-navbar-collapse-9" id="menu">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" >
+                <a href="/" id="logo">
                     <span class="twister-title hidden-xs">
                         <span>T</span><span>W</span><span>I</span><span>S</span><span>T</span><span>E</span><span>R</span>
                     </span>
@@ -38,7 +39,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9" >
                 <ul class="nav navbar-nav">
                     <#if model.authUser?? >
                         <li>
@@ -46,7 +47,7 @@
                         </li>
                     </#if>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" >
                     <#if model.authUser?? >
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
