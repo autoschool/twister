@@ -3,8 +3,8 @@
     margin: 0 15px;
 }
 img.twister-title {
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 10px;
+    margin-left: 20px;
     width: 42px;
     height: 42px;
 }
@@ -68,10 +68,13 @@ color:#d43f3a;
     color: #333;
 }
 
-.comments {
-    padding: 10px 0;
+.commentBody {
+    padding: 0 5px;
 }
 
+.comments .list-group {
+    margin-bottom: 0 !important;
+}
 
 .to-top {
     z-index: 9000;
@@ -93,4 +96,95 @@ color:#d43f3a;
     color: white;
     background: #333333 url(/public/app/img/to-top.png) no-repeat 50% 11px;
     border-radius: 7px;
+}
+
+.background-404 {
+    height: 70%;
+    background-image: url("/public/app/img/404.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+
+input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
+    font-size: .8em;
+    color: #0089E0;
+    top: -3em;
+    -webkit-transition: all 0.125s ease;
+    transition: all 0.125s ease;
+}
+
+.styled-input {
+    float: left;
+    width: 33.3333%;
+    margin: 2em 0 .33em;
+    position: relative;
+}
+
+.styled-input label {
+    color: #999;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    pointer-events: none;
+}
+
+.styled-input.wide { width: 100%; }
+
+input,
+textarea {
+    padding: .5em !important;
+    line-height: 1.35;
+    border: 0;
+    width: 100%;
+}
+
+input ~ span,
+textarea ~ span {
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #0089E0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    -webkit-transition: all 0.125s ease;
+    transition: all 0.125s ease;
+}
+
+input:focus,
+textarea:focus { outline: 0; }
+
+input:focus ~ span,
+textarea:focus ~ span {
+    width: 100%;
+    -webkit-transition: all 0.075s ease;
+    transition: all 0.075s ease;
+}
+
+textarea {
+    width: 100%;
+    min-height: 3em;
+}
+
+.uploader .uploadcare-widget-button-open , .uploadcare-widget-status{
+    margin: 0 !important;
+}
+.uploader input {
+    display: none;
+}
+
+.user-info {
+    max-height: 260px;
+}
+
+.user-avatar {
+    max-height: 180px;
+}
+.user-profile-collapse-button {
+    height: 65px;
 }

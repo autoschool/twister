@@ -1,4 +1,4 @@
-<form class="form" role="form" action="/auth/signin" method="post">
+<form class="form signin-form" role="form" action="/auth/signin" method="post">
     <div class="modal-body">
         <div class="form-group">
             <input type="text" class="form-control" id="signin-login" name="signin-login"
@@ -10,7 +10,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" >Sign in</button>
+        <button type="submit" class="btn btn-primary" id="signin-submit" >Sign in</button>
     </div>
 </form>
