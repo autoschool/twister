@@ -4,7 +4,7 @@
     <div class="signature">
         <a href="/user/${comment.userId}" name="comment-${comment.longId}">
             <i class="fa fa-user"></i>
-            ${comment.user.name?html}
+            ${comment.user.login?html}
         </a>
 
         <b class="divider-slash"></b>
