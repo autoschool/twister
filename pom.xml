@@ -131,7 +131,6 @@
                 </configuration>
             </plugin>
             <plugin>
-            <plugin>
                 <groupId>org.javalite</groupId>
                 <artifactId>activejdbc-instrumentation</artifactId>
                 <version>1.4.9</version>
