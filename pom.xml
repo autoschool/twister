@@ -144,7 +144,7 @@
                     </execution>
                     <execution>
                         <id>2</id>
-                        <phase>process-classes</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>instrument</goal>
                         </goals>
