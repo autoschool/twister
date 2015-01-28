@@ -7,6 +7,7 @@ import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.User;
 import ru.qatools.school.twister.view.ViewData;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -25,6 +26,9 @@ public class PostResources {
 
     @Context
     HttpServletResponse response;
+
+    @Context
+    HttpServletRequest request;
 
     @Context
     SecurityContext securityContext;
@@ -60,6 +64,8 @@ public class PostResources {
         ViewData view = new ViewData();
         view.authUser = (User) securityContext.getUserPrincipal();
         view.post = new Post();
+        view.post.setTitle("");
+        view.post.setBody("");
 
         return view;
     }
@@ -88,6 +94,17 @@ public class PostResources {
         return "";
     }
 
+    @GET
+    @Path("/error")
+    @Template(name = "/post/postError.ftl")
+    public ViewData postError(@PathParam("id") int id) {
+        ViewData view = new ViewData();
+        view.authUser = (User) securityContext.getUserPrincipal();
+        view.post = Post.findById(id);
+        return view;
+    }
+
+
     @POST
     @Path("/{id}/addComment")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -95,7 +112,7 @@ public class PostResources {
                              @FormParam("commentBody") String fCommentBody) throws IOException {
 
         if ( fCommentBody.trim().isEmpty() ) {
-            response.sendRedirect("/post/" + fPostId + "/emptyComment" );
+            response.sendRedirect("/post/" + fPostId + "/addComment/error" );
             return "";
         }
 
@@ -114,19 +131,9 @@ public class PostResources {
 
 
     @GET
-    @Path("/error")
-    @Template(name = "/post/postError.ftl")
-    public ViewData postError(@PathParam("id") int id) {
-        ViewData view = new ViewData();
-        view.authUser = (User) securityContext.getUserPrincipal();
-        view.post = Post.findById(id);
-        return view;
-    }
-
-    @GET
-    @Path("/{id}/emptyComment")
-    @Template(name = "/post/comments/emptyComment.ftl")
-    public ViewData emptyComment(@PathParam("id") int id) {
+    @Path("/{id}/addComment/error")
+    @Template(name = "/partials/comment/emptyCommentError.ftl")
+    public ViewData emptyCommentError(@PathParam("id") int id) {
         ViewData view = new ViewData();
         view.authUser = (User) securityContext.getUserPrincipal();
         view.post = Post.findById(id);
@@ -173,7 +180,8 @@ public class PostResources {
         }
         post.delete();
 
-        response.sendRedirect( "/post/all" );
+        String referer = request.getHeader( "referer" );
+        response.sendRedirect( IndexResource.isSystemPage(referer) ? "/" : referer );
 
         return "";
     }

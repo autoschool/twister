@@ -29,6 +29,16 @@ public class AuthResource {
                                   @FormParam("register-login") String login,
                                   @FormParam("register-pass") String hash) throws IOException {
 
+        if ( !dataIsValid( name, login, hash ) ) {
+            response.sendRedirect( "/auth/register/error" );
+            return "";
+        }
+
+        if ( userExists( login ) ) {
+            response.sendRedirect( "/auth/register/userExists" );
+            return "";
+        }
+
         User user = new User();
         user.setName(name);
         user.setLogin(login);
@@ -43,6 +53,29 @@ public class AuthResource {
         return "";
     }
 
+
+    @GET
+    @Path("/register/error")
+    @Template(name = "/partials/register/error.ftl")
+    public ViewData showRegisterError() {
+        ViewData view = new ViewData();
+
+        view.authUser = (User) securityContext.getUserPrincipal();
+
+        return view;
+    }
+
+    @GET
+    @Path("/register/userExists")
+    @Template(name = "/partials/register/userExistsError.ftl")
+    public ViewData showUserExistsError() {
+        ViewData view = new ViewData();
+
+        view.authUser = (User) securityContext.getUserPrincipal();
+
+        return new ViewData();
+    }
+
     @POST
     @Path("/signin")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -53,7 +86,7 @@ public class AuthResource {
 
         if (user == null) {
             System.out.println("processLogin | name or password is wrong");
-            response.sendRedirect( "/auth/error" );
+            response.sendRedirect( "/auth/signin/error" );
 
             return "";
         }
@@ -62,7 +95,7 @@ public class AuthResource {
         session.setAttribute( USER_ID_ATTRIBUTE , user.getId() );
 
         String referer = request.getHeader( "referer" );
-        response.sendRedirect( isSystemPage( referer ) ? "/" : referer );
+        response.sendRedirect( IndexResource.isSystemPage(referer) ? "/" : referer );
 
         return "";
     }
@@ -79,14 +112,19 @@ public class AuthResource {
     }
 
     @GET
-    @Path("/error")
-    @Template(name = "/auth/error.ftl")
+    @Path("/signin/error")
+    @Template(name = "/partials/login/error.ftl")
     public ViewData showLoginError() {
         return new ViewData();
     }
 
-    private boolean isSystemPage( String path ) {
-        return path.contains( "error" ) || path.contains( "404" );
+    private boolean dataIsValid(String name, String login, String hash) {
+        return !name.trim().isEmpty() && !login.trim().isEmpty() && !hash.isEmpty();
+    }
+
+    private boolean userExists( String login ) {
+        User tmpUser = User.findFirst("login = ?", login);
+        return tmpUser != null;
     }
 
     final static String USER_ID_ATTRIBUTE = "userId";

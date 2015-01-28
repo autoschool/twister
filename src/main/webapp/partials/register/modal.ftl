@@ -7,7 +7,7 @@
                 </button>
                 <h4 class="modal-title">Register</h4>
             </div>
-            <#include "/partials/register/form.ftl"/>
+            <#include "../../partials/register/form.ftl"/>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

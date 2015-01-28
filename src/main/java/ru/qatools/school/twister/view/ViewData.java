@@ -1,5 +1,6 @@
 package ru.qatools.school.twister.view;
 
+import ru.qatools.school.twister.models.Comment;
 import ru.qatools.school.twister.models.Post;
 import ru.qatools.school.twister.models.User;
 
@@ -14,6 +15,7 @@ public class ViewData {
     public Post post;
     public List<Post> posts;
     public User profile;
+    public List<Comment> comments;
 
 
     public User getAuthUser() {
@@ -26,6 +28,10 @@ public class ViewData {
 
     public List<Post> getPosts() {
         return posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
     public User getProfile() {

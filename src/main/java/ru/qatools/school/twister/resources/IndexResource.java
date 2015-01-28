@@ -34,6 +34,10 @@ public class IndexResource {
     @Context
     SecurityContext securityContext;
 
+    static boolean isSystemPage(String path) {
+        return path.toLowerCase().contains( "error" ) || path.contains( "404" );
+    }
+
     @GET
     @Path("/")
     @Template(name = "/post/showPosts.ftl")
@@ -57,7 +61,7 @@ public class IndexResource {
         if (authUser != null) {
             redirectUrl = "/user/" + authUser.getId();
         } else {
-            redirectUrl = "/auth/signin";
+            redirectUrl = "/profile/sessionExpiredError";
         }
 
         response.sendRedirect(redirectUrl);
