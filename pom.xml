@@ -149,13 +149,13 @@
                             <goal>instrument</goal>
                         </goals>
                     </execution>
-                    <execution>
+                    <!--<execution>
                         <id>2</id>
                         <phase>process-test-classes</phase>
                         <goals>
                             <goal>instrument</goal>
                         </goals>
-                    </execution>
+                    </execution>-->
 
                 </executions>
             </plugin>
