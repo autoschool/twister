@@ -33,7 +33,9 @@ public class AuthUserProvider implements ContainerRequestFilter {
         requestContext.setSecurityContext(new AuthUser(user));
     }
 
-
+    public void setRequest(HttpServletRequest request) {
+        this.request = request;
+    }
 }
 
 
