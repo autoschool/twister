@@ -144,18 +144,19 @@
                 <executions>
                     <execution>
                         <id>1</id>
-                        <phase>process-test-classes</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>instrument</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>2</id>
-                        <phase>prepare-package</phase>
+                        <phase>process-test-classes</phase>
                         <goals>
                             <goal>instrument</goal>
                         </goals>
                     </execution>
+
                 </executions>
             </plugin>
 
