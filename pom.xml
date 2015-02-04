@@ -144,7 +144,7 @@
                 <executions>
                     <execution>
                         <id>1</id>
-                        <phase>prepare-package</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>instrument</goal>
                         </goals>

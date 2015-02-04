@@ -21,7 +21,6 @@ import static org.junit.Assert.assertEquals;
 public class AuthUserProviderTest {
 
     @Test
-    @Ignore
     public void testFilter() throws Exception {
         DatabaseProvider.openConnection();
 
